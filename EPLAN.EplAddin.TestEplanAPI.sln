@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CENTEC.EplAddin.TestEplanAPI", "CENTEC.EplAddin.TestEplanAPI.csproj", "{FB1B91FC-6A39-4577-986B-988E5C65C351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Debug|x64.ActiveCfg = Debug|x64
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Debug|x64.Build.0 = Debug|x64
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Release|x64.ActiveCfg = Release|x64
+		{FB1B91FC-6A39-4577-986B-988E5C65C351}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E93D3C3D-864A-4374-9BC4-EBD7C0478438}
+	EndGlobalSection
+EndGlobal
