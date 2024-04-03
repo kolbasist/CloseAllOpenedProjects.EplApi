@@ -35,7 +35,7 @@ namespace CENTEC.EplAddin.TestEplanAPI
             {
                 Logger.SendMSGToEplanLog("[TimerManager.SesseionSwitched] Screen Locked");
                 _lockTimer = new Timer();
-                StartTimer(_lockTimer, TimeSpan.FromMinutes(1).TotalMilliseconds, false, "Lock Timer");
+                StartTimer(_lockTimer, TimeSpan.FromMinutes(15).TotalMilliseconds, false, "Lock Timer");
             }
 
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
