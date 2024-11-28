@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace CENTEC.EplAPI.Service
+namespace MyEplanAPI.Service
 {
     internal static class Logger
     {
