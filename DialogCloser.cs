@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CENTEC.EplAPI.Service;
+using MyEplanAPI.Service;
 
-namespace CENTEC.EplAddin.Warden
+namespace Warden
 {
     internal class DialogWindowCloser
     {
