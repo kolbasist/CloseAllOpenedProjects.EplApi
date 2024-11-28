@@ -1,10 +1,10 @@
-﻿using CENTEC.EplAPI.Service;
+﻿using MyEplanAPI.Service;
 using Eplan.EplApi.DataModel;
 using System;
 using System.Linq;
 using System.Threading;
 
-namespace CENTEC.EplAddin.TestEplanAPI
+namespace Warden
 {
     internal class ProjectCloser
     {
