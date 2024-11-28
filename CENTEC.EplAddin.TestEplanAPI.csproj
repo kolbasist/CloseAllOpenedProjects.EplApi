@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CENTEC.EplAddin.Warden</RootNamespace>
     <AssemblyName>CENTEC.EplAddin.Warden</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -44,86 +45,59 @@
   <ItemGroup>
     <Reference Include="Eplan.EplApi.AFu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.AFu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.AFu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.Baseu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.Baseu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.Baseu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.DataModelu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.DataModelu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.DataModelu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.EServicesu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.EServicesu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.EServicesu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.Guiu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.Guiu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.Guiu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.HEServicesu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.HEServicesu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.HEServicesu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.MasterDatau, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.MasterDatau.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.MasterDatau.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.RecorderToolsu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.RecorderToolsu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.RecorderToolsu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.RemoteClientu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.RemoteClientu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.RemoteClientu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.Remotingu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.Remotingu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.Remotingu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.Starteru, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.Starteru.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.Starteru.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.Systemu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.Systemu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.Systemu.dll</HintPath>
     </Reference>
     <Reference Include="Eplan.EplApi.WebServiceu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ecea1219c93267ce, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplApi.WebServiceu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WebControlResu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WebControlResu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WebControlu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WebControlu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WPF.Controlsu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WPF.Controlsu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WPF.DB.Interfacesu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WPF.DB.Interfacesu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WPF.DBu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WPF.DBu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WPF.Interfacesu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WPF.Interfacesu.dll</HintPath>
-    </Reference>
-    <Reference Include="Eplan.EplSDK.WPFu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2.9.4\Bin\Eplan.EplSDK.WPFu.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\EPLAN\Platform\2024.0.3\Bin\Eplan.EplApi.WebServiceu.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInModule.cs" />
+    <Compile Include="DialogCloser.cs" />
     <Compile Include="ProjectCloser.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="TimersManager.cs" />
@@ -143,6 +118,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="WindowLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,6 +4,39 @@
         <name>Eplan.EplApi.Starteru</name>
     </assembly>
     <members>
+        <member name="T:Eplan.EplApi.Starter.ComHelper">
+            <summary>
+              The class ComHelper initialize the DCOM security which needed to connect to license manager (ELM).
+              This function should be called on the main
+            </summary>  
+            
+        </member>
+        <member name="M:Eplan.EplApi.Starter.ComHelper.#ctor">
+            <summary>
+            initialize the DCOM security
+            
+            </summary>
+        </member>
+        <member name="M:Eplan.EplApi.Starter.ComHelper.InitializeComSecurity">
+            <summary>
+            initialize the DCOM security which needed to connect to license manager (ELM).
+            </summary>
+            <remarks>
+            sample:
+              static class Program
+              {
+                //The main entry point for the application.
+                [STAThread]
+                static void Main()
+                {
+                   Eplan.EplApi.Starter.ComHelper cHelper;
+                   cHelper.InitializeComSecurity();
+                   ..
+                   ..
+                   Application.Run(....);
+                }
+            </remarks>
+        </member>
         <member name="T:Eplan.EplApi.Starter.EplanSignedAssemblyAttribute">
              <summary>
              EplanAssemblyAttribute is the attribute to identify an assembly used for eplan.

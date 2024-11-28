@@ -1,95 +1,116 @@
 ﻿using CENTEC.EplAPI.Service;
-using Eplan.EplApi.Base;
 using Eplan.EplApi.DataModel;
-using Eplan.EplApi.HEServices;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace CENTEC.EplAddin.TestEplanAPI
 {
     internal class ProjectCloser
     {
         private ProjectManager _projectManager;
-        private LockingStep _lockingStep;
-        private LockingException _lockException;
+        private SynchronizationContext _synchronizationContext;
 
         public ProjectCloser()
         {
             _projectManager = new ProjectManager();
             _projectManager.LockProjectByDefault = false;
+            _synchronizationContext = SynchronizationContext.Current;
         }
 
-        private void CloseProject(string projectName)
+        // Close all projects
+        public void CloseAll()
         {
+            Logger.SendMSGToEplanLog("[ProjectCloser.CloseAll] Invoked");
+
+            if (SynchronizationContext.Current == _synchronizationContext)
+            {
+                // Already on UI thread
+                ExecuteCloseAll();
+            }
+            else
+            {
+                if (_synchronizationContext == null)
+                {
+                    Logger.SendMSGToEplanLog("[ProjectCloser.CloseAll] SynchronizationContext is null.");
+                    return;
+                }
+
+                _synchronizationContext.Post(state =>
+                {
+                    Logger.SendMSGToEplanLog("[ProjectCloser.CloseAll] Switching to UI thread to close projects.");
+                    ExecuteCloseAll();
+                }, null);
+            }
+        }
+
+        // Execute close all projects logic
+        private void ExecuteCloseAll()
+        {
+            Logger.SendMSGToEplanLog("[ProjectCloser.ExecuteCloseAll] Attempting to close all projects.");
+
             try
             {
-                Edit ed = new Edit();
-                ed.ClearSelection();
-                _projectManager.LockProjectByDefault = false;
-
-                using (new Eplan.EplApi.DataModel.LockingStep())
-                    if (_projectManager.OpenProjects.Any(p => p.ProjectName == projectName))
-                    {
-                        ed.SelectProjectInPagesNavigator(_projectManager.OpenProjects.Where(p => p.ProjectName == projectName).FirstOrDefault());
-                        ed.RedrawGed();
-
-                        //PM.CurrentProject.Close();
-                        _projectManager.OpenProjects.Where(p => p.ProjectName == projectName).FirstOrDefault().Close();
-
-                        Logger.SendMSGToEplanLog($"Project '{projectName}' closed");
-                    }
-
-                //Close by action (use full project name)
-                //Eplan.EplApi.ApplicationFramework.ActionCallingContext acc = new Eplan.EplApi.ApplicationFramework.ActionCallingContext();
-                //acc.AddParameter("PROJECT", ProjectName);
-                //String strAction = @"XPrjActionProjectClose";
-                //result = new Eplan.EplApi.ApplicationFramework.CommandLineInterpreter().Execute(strAction, acc);
-
-            }
-            catch (LockingException ex)
-            {
-                Logger.SendMSGToEplanLog($"(Locking) Intent execution error: {ex.Message}");
+                while (_projectManager.OpenProjects.Length > 0)
+                {
+                    _projectManager.CurrentProject.Close();
+                    Logger.SendMSGToEplanLog("[ProjectCloser.ExecuteCloseAll] Closed one project. Remaining projects: " + _projectManager.OpenProjects.Length);
+                }
             }
             catch (Exception ex)
             {
-                Logger.SendMSGToEplanLog($"Intent execution error: {ex.Message}");
-            }
-
-            if (_projectManager.OpenProjects.Any(p => p.ProjectName == projectName))
-            {
-                Logger.SendMSGToEplanLog("[ProjectCloser] Mario, your princess is in another castle...");
-                CloseProject(projectName);
+                Logger.SendMSGToEplanLog($"[ProjectCloser.ExecuteCloseAll] Exception while closing projects: {ex.Message}");
             }
         }
 
-        private Queue<string> GetProjectsList()
+        // Close a specific project by name
+        public void CloseProject(string projectName)
         {
-            _projectManager.LockProjectByDefault = false;
-            Project[] projects = _projectManager.OpenProjects;
-            Queue<string> projectNames = new Queue<string> { };
+            Logger.SendMSGToEplanLog($"[ProjectCloser.CloseProject] Invoked for project: {projectName}");
 
-            foreach (Project p in projects)             
-                projectNames.Enqueue(p.ProjectName);            
-
-            return projectNames;
-        }
-
-        public void CloseAll()
-        {
-            Queue<string> projectNames = GetProjectsList();
-
-            while (projectNames.Count > 0)
+            if (SynchronizationContext.Current == _synchronizationContext)
             {
-                CloseProject(projectNames.Dequeue());
+                // Already on UI thread
+                ExecuteCloseProject(projectName);
+            }
+            else
+            {
+                if (_synchronizationContext == null)
+                {
+                    Logger.SendMSGToEplanLog("[ProjectCloser.CloseProject] SynchronizationContext is null.");
+                    return;
+                }
+
+                _synchronizationContext.Post(state =>
+                {
+                    Logger.SendMSGToEplanLog($"[ProjectCloser.CloseProject] Switching to UI thread to close project: {projectName}");
+                    ExecuteCloseProject(projectName);
+                }, null);
             }
         }
 
-        //public void SelfDestruct()
-        //{
+        // Execute close specific project logic
+        private void ExecuteCloseProject(string projectName)
+        {
+            Logger.SendMSGToEplanLog($"[ProjectCloser.ExecuteCloseProject] Attempting to close project: {projectName}");
 
-        //}
+            try
+            {
+                Project project = _projectManager.OpenProjects.FirstOrDefault(p => p.ProjectName == projectName);
+                if (project != null)
+                {
+                    project.Close();
+                    Logger.SendMSGToEplanLog($"[ProjectCloser.ExecuteCloseProject] Project '{projectName}' closed successfully.");
+                }
+                else
+                {
+                    Logger.SendMSGToEplanLog($"[ProjectCloser.ExecuteCloseProject] Project '{projectName}' not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.SendMSGToEplanLog($"[ProjectCloser.ExecuteCloseProject] Exception while closing project '{projectName}': {ex.Message}");
+            }
+        }       
     }
 }

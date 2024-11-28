@@ -199,7 +199,7 @@
             		DMObjectsFinder dMObjectsFinder = new DMObjectsFinder(page.Project);
             		FunctionsFilter functionsFilter = new FunctionsFilter();
             		functionsFilter.Page = page;
-            		functionsFilter.Category = Function.Enums.Category.Motor;
+            		functionsFilter.FunctionCategory = FunctionCategory.Motor;
             		Function[] functions = dMObjectsFinder.GetFunctions(functionsFilter);
             		StringCollection scFuncIds = new StringCollection();
             		foreach (Function function in functions)
@@ -545,7 +545,7 @@
             		DMObjectsFinder dMObjectsFinder = new DMObjectsFinder(page.Project);
             		FunctionsFilter functionsFilter = new FunctionsFilter();
             		functionsFilter.Page = page;
-            		functionsFilter.Category = Function.Enums.Category.Motor;
+            		functionsFilter.FunctionCategory = FunctionCategory.Motor;
             		Function[] functions = dMObjectsFinder.GetFunctions(functionsFilter);
             		StringCollection scFuncIds = new StringCollection();
             		foreach (Function function in functions)

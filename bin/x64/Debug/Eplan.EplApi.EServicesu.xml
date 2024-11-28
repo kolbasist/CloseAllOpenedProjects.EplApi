@@ -4,52 +4,36 @@
         "Eplan.EplApi.EServices"
     </assembly>
     <members>
-        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Prio">
+        <member name="P:Eplan.EplApi.EServices.Ged.SelectionInteraction.IsSelectionInteraction">
             <summary>
-Priority of interaction.
+Returns true, if interaction is a helper interaction to select placements.
 </summary>
-            <remarks>
-If interaction is started while another interaction is running then the one with the lower
-priority will be deactivated until all interactions with higher priority will be finished.
-</remarks>
+            <remarks>By default it returns <c>false</c></remarks>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Ordinal">
+        <member name="P:Eplan.EplApi.EServices.Ged.SelectionInteraction.IsInsertInteraction">
             <summary>
-Overload level of interaction.
+Returns true, if interaction is used to insert one ore more placements on page.
 </summary>
-            <remarks>
-The new interaction can overwrite an existing interaction which has the same Name 
-and if the ordinal number of the new interaction is higher.
-</remarks>
+            <remarks>By default it returns <c>true</c></remarks>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.NameOfBaseInteraction">
+        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.Finalize">
             <summary>
-Name of interaction which will be override.
+Non-deterministic Finalizer of InsertInteraction object.
 </summary>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Name">
+        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.Dispose">
             <summary>
-Name under interaction will be registered.
+Destructor for deterministic finalization of InsertInteraction object.
 </summary>
         </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.Finalize">
-            <summary>
-Non-deterministic Finalizer of InteractionAttribute object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.Dispose">
-            <summary>
-Destructor for deterministic finalization of InteractionAttribute object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.#ctor">
+        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.#ctor">
             <summary> 
 Default constructor.
 </summary>
         </member>
-        <member name="T:Eplan.EplApi.EServices.Ged.InteractionAttribute">
+        <member name="T:Eplan.EplApi.EServices.Ged.SelectionInteraction">
             <summary> 
-TODO
+Base class for specific interactions that selects objects.
 </summary>
         </member>
         <member name="P:Eplan.EplApi.EServices.PotentialVerification.FilterConfigPath">
@@ -83,18 +67,6 @@ regardless value of this property.
             </remarks>
         </member>
         <member name="P:Eplan.EplApi.EServices.PotentialVerification.ObjectsFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PotentialVerification.ObjectsTypeFilter">
             <summary>
 Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
 </summary>
@@ -157,900 +129,6 @@ identifier, so such declaration as:
         <member name="T:Eplan.EplApi.EServices.IPotentialVerification">
             <summary>
 Interface for a special verification class.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Update(Eplan.EplApi.EServices.SubProject)">
-            <summary>
-Updates project from subproject.
-</summary>
-            <example>
-                <code description="Example of updating a master project with content of subproject" lang="cs" source="P8_API_Example_EServices_SubProjectsCollection_Update.cs.txt" />
-            </example>
-            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and update is not possible.</exception>
-            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Store(Eplan.EplApi.EServices.SubProject)">
-            <summary>
-Inserts filed-off subproject back into the project.
-</summary>
-            <remarks>
-Subproject can be imported only if SubProject.IsStorePossible is <c>true</c>.
-</remarks>
-            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and import is not possible.</exception>
-            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.FileOff(Eplan.EplApi.EServices.SubProject)">
-            <summary>
-Creates subproject, i.e. file it off from the project.
-</summary>
-            <remarks>
-Subproject can be exported only if SubProject.IsFileOffPossible is <c>true</c>.
-After calling this method source Project object becomes invalid. Valid Project object can be obtained using ProjectManager::CurrentProject or ProjectManager::OpenedProjects property.
-</remarks>
-            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and export is not possible.</exception>
-            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Count">
-            <summary>
-Returns number of sub projects.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Project">
-            <summary>
-Gets the project.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Item(System.Int32)">
-            <summary>
-Gets the element at the specified index.
-</summary>
-            <exception cref="T:System.IndexOutOfRangeException">The exception that is thrown when an attempt is made to access an element of an array with an index that is outside the bounds of the array.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.GetEnumerator">
-            <summary>
-Returns an enumerator that can iterate through a collection.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.GetEnumerator2">
-            <summary>
-Returns an enumerator that can iterate through a collection.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Finalize">
-            <summary>
-Non-deterministic Finalizer of SubProjectsCollection object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Dispose">
-            <summary>
-Destructor for deterministic finalization of SubProjectsCollection object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.#ctor(Eplan.EplApi.DataModel.Project)">
-            <summary> 
-Default constructor.
-</summary>
-            <param name="pProject">Source project for subprojects.</param>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.SubProjectsCollection">
-            <summary> 
-Represents collection of subprojects specified by the defined working sections that are possible for given project.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProject.#ctor">
-            <summary> 
-Default constructor.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.IsStorePossible">
-            <summary>
-Returns <c>true</c> if project exported from this subproject can be inserted back to project.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.IsFileOffPossible">
-            <summary>
-Returns <c>true</c> if subproject represened by this object can be exported.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.Project">
-            <summary>
-Project for which  the subproject is defined.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.Number">
-            <summary>
-Subproject number.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.SchemeName">
-            <summary>
-Name of the associated defined working section for the this subproject.
-</summary>
-            <remarks>
-This name can be used for reading, importing or exporting scheme for/to project settings.
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.Status">
-            <summary>
-Status of this subproject.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.Description">
-            <summary>
-Description of the associated defined working section for the this subproject.
-</summary>
-            <exception cref="T:System.InvalidOperationException">Thrown if project of this subproject becames invalid and it is not possible to continue.</exception>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.SubProject.Name">
-            <summary>
-Displayed scheme name of the associated defined working section for the this subproject.
-</summary>
-            <exception cref="T:System.InvalidOperationException">Thrown if project of this subproject becames invalid and it is not possible to continue.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProject.Finalize">
-            <summary>
-Non-deterministic Finalizer of SubProject object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.SubProject.Dispose">
-            <summary>
-Destructor for deterministic finalization of SubProject object.
-</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.Revisioned">
-            <summary>Project is revisioned.</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectNotEditable">
-            <summary>The subproject is not an editable project (*.elk), it cannot be filed off.</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectFiledOff">
-            <summary>Subproject is filed off. (Exported)</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectStored">
-            <summary>Subproject is stored. (Imported)</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.WorkingSectionOverlaps">
-            <summary>Defined working section overlaps - parts of this defined working section are also contained in other defined working sections. Filing off is not possible.</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.Unknown">
-            <summary>Status is unknown.</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.SubProject.SubProjectStatus">
-            <summary>
-Possible statuses of subproject.
-</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.SubProject">
-            <summary> 
-Represents subproject specified by the defined working sections.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.Finalize">
-            <summary>
-Non-deterministic Finalizer of BaseInteractionAttribute object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.Dispose">
-            <summary>
-Destructor for deterministic finalization of BaseInteractionAttribute object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.#ctor(System.String)">
-            <summary> 
-Default constructor.
-</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute">
-            <summary> 
-TODO
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.FunctionVerification.FilterConfigPath">
-            <summery>
-Returns the settings path to this setting where the possible range of the filter is defined.
-</summery>
-            <remarks>
-This property does not defined the user choice of the filter.
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.FunctionVerification.AdditionalObjectsFilter">
-            <summary>
-Type of class which filters objects that are additionally passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>
-Set of types that can be passed to be verified, is created from type returned by this property and all type that inherit from it.
-</para>
-                <para>
-Depending on the value of the filter, framework can also pass additional object to be checked. They are objects of classes:
-Connections, DeviceListEntry, ArticleReference and PlanningSegment.
-</para>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>
-While check of whole project is done all pages and installation spaces are always passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method,
-regardless value of this property.
-</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.FunctionVerification.ObjectsFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.FunctionVerification.ObjectsTypeFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.FunctionVerification.GetAllFunctionsWithSameName(Eplan.EplApi.DataModel.Function,System.Collections.ArrayList@)">
-            <summary>
-Returns all functions of the project with the same name.
-Can be called within the Execute function. 
-</summary>
-            <remarks>
-This function uses an internal buffer mechanism and is therefore very quick when 
-called several times in a check routine.
-</remarks>
-            <param name="oFunction">
-The function based on which other functions with the same name are to be searched.
-</param>
-            <param name="colFunctions">
-The list of results giving all functions with the same name.
-</param>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.FunctionVerification.Finalize">
-            <summary>
-Non-deterministic Finalizer of ClassName object.
-</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.FunctionVerification">
-            <summary>
-Base class for specific verification classes that only check
-functions.
-</summary>
-            <remarks>
-When using following inheritance hierarchy :
-
-Interface, inheriting abstract class, and then normal class,
-(like IMessage-\&gt;PotentialVerification -\&gt;VerificationExample)
-under .Net 2.0 there is a run-time error while loading add-in
-("Unable to load one or more of the requested types. Retrieve
-the LoaderExceptions property for more information")
-</remarks>
-            <example>  
-Current workaround is to add interface names after class
-identifier, so such declaration as:
-
-<code><b>public</b><b>class</b> VerificationExample: PotentialVerification
-{}
-// Should be substituted by :
-<b>public</b><b>class</b> VerificationExample: PotentialVerification : IVerification : IMessage
-{}
-</code></example>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.IFunctionVerification.AddCategoryFilter(Eplan.EplApi.DataModel.Function.Enums.Category@)">
-            <summary>
-This type of check is only performed for a certain function category.
-</summary>
-            <param name="eCategory">
-Function category for which this check is to be made.
-</param>
-            <remarks>
-Method AddCategoryFilter is called only when registering the Addin (it is not executed every project checking).
-</remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.IFunctionVerification">
-            <summary>
-Interface for a special verification class.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Message.MessageState">
-            <summary>
-The MessageState determines the actual adjusted check type 
-</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.Message.MessageStateType.None">
-            <summary>None</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.Message.MessageStateType.ModuleSpecific">
-            <summary>Module-Specific</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.Message.MessageStateType">
-            <summary>
-Message state types
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Message.DoHelp">
-            <summary>
-Called by EPLAN when the help text to the message should be shown.
-the function itself must take care to call the matching help system
-with the correct language. 
-The easiest way is to call a simple dialog or message box.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Message.GetMessageText">
-            <summary>
-Called by EPLAN when the message text should be shown. 
-</summary>
-            <remarks>
-To allow multilingualism in Eplan projects, it's not the message text 
-itself that will be saved in the project but well-defined properties which 
-must be language independent. 
-The function itself is responsible 
-for getting the text in the correct language. 
-Eplan provides special settings and functions to determine what language is actually used.
-
-The message text may contain place holders for substitution, e.g. "This here will be replaced: %1!s!" 
-A place holder begins with '%' followed by a serial number. 
-'!s!' will be replaced by the given text for substitution. 
-The message text will be saved in the project message database and should be language independent. 
-The text for substitution should be declared when the message will be added to the project.
-
-This message is called not only during a verification action but also when messages already existing in a project
-(generated by earlier verifications) have to be displayed.
-</remarks>
-            <returns>
-The message's text in correct language
-</returns>
-            <seealso text="Eplan.EplApi.EServices.MessageManager" cref="!:Eplan::EplApi::EServices::MessageManager" />
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Message.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)">
-            <summary>
-Called by EPLAN when the new project message is added to the
-system. If a new project message was added to a registered
-add-in, the add-in must be registered over again.
-</summary>
-            <param name="eRegion">The new project message will
-                      be added to this <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />.
-                      Add\-ins should be use region
-                      ePRJMSG_REGION_EXTERNALS. </param>
-            <param name="iMessageId">serial number inside the
-                         chosen region </param>
-            <param name="eClassification">Default <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
-                              of the new message. The <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
-                              could be changed in the
-                              project setting dialog at run
-                              time. </param>
-            <param name="iOrdinal">The new message could
-                       overwrite an existing message
-                       which has the same <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                       and the same iMessageId, if
-                       the ordinal number of the new
-                       message is higher. (default\:
-                       20)</param>
-            <remarks>
-By overriding an existing message, it is only possible to
-change the message text, but not the classification etc.
-</remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.Message">
-            <summary>
-Base class for electrotechnical messages.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.ReuseMessages">
-            <summary>
-Determines whether new message can be duplicated in collection. Default value is <c>false</c>.
-</summary>
-            <remarks>
-If <c>true</c> and message of same id, region and assign objects exists in collection then no new message will be added to collection.
-If <c>false</c> new message is always added to collection.
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Int16)">
-            <summary>
-Adds a new message associated with part number to the project's message management window.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="strPartNumber">The message refers to this
-                       part number. Cannot be empty or null. </param>
-            <param name="strPartVariant">The message refers to this
-                       part variant. Cannot be empty or null. </param>
-            <param name="bImmediateShow">True\: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <param name="nCreationType">Additional information about the source of the message.
-                            Possible values are:
-                                0 - undefined,
-                                1 - Online verification
-                                2 - Offline verification
-                                3 - Explicit creation
-                            Note: In order to add a message with nCreationType = 3,
-                            it must be registered and enabled in the message management.</param>
-            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
-            <remarks>
-Method does not check if part and part variant exist. 
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.Boolean,System.String,System.Int16)">
-            <summary>
-Adds a new message associated with part number to the project's message management window.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="strPartNumber">The message refers to this
-                       part number. Cannot be empty or null. </param>
-            <param name="bImmediateShow">True\: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <param name="nCreationType">Additional information about the source of the message.
-                            Possible values are:
-                                0 - undefined,
-                                1 - Online verification
-                                2 - Offline verification
-                                3 - Explicit creation
-                            Note: In order to add a message with nCreationType = 3,
-                            it must be registered and enabled in the message management.</param>
-            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
-            <remarks>
-Message by default is related to variant '1' of the part.
-Method does not check if part exist. 
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.Boolean,System.String)">
-            <summary>
-Adds a new message associated with part number to the project's message management window. Message is related to variant = 0.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="strPartNumber">The message refers to this
-                       part number. Cannot be empty or null. </param>
-            <param name="strPartVariant">The message refers to this
-                       part variant. Cannot be empty or null. </param>
-            <param name="bImmediateShow">True\: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
-            <remarks>
-Method does not check if part and part variant exist. 
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.Boolean,System.String)">
-            <summary>
-Adds a new message associated with part number to the project's message management window.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="strPartNumber">The message refers to this
-                       part number in variant '1'. Cannot be empty or null. </param>
-            <param name="bImmediateShow">True\: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
-            <remarks>
-Message by default is related to variant '1' of the part.
-Method does not check if part exist. 
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,Eplan.EplApi.DataModel.StorableObject,System.Boolean,Eplan.EplApi.DataModel.StorableObject,System.String,System.Int16)">
-            <summary>
-Adds a new message to the project's message management window.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="oObject1">The message refers to this
-                       object. Optional parameter;
-                       can also be NULL. </param>
-            <param name="bImmediateShow">True\: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="oObject2">A second object to which
-                       this message also refers.
-                       Optional parameter; can also
-                       be NULL. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <param name="nCreationType">Additional information about the source of the message.
-                            Possible values are:
-                                0 - undefined,
-                                1 - Online verification
-                                2 - Offline verification
-                                3 - Explicit creation
-                            Note: In order to add a message with nCreationType = 3,
-                            it must be registered and enabled in the message management.</param>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,Eplan.EplApi.DataModel.StorableObject,System.Boolean,Eplan.EplApi.DataModel.StorableObject,System.String)">
-            <summary>
-Adds a new message to the database with electrotechnical
-messages (Project data\Messages\Management).
-Any existing message from the system can be added as well as
-messages registered by an add-in.
-</summary>
-            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                      is added. </param>
-            <param name="nErrNr">A message with this message
-                     number is added. </param>
-            <param name="strErrTextParam">reference to a parameterstring to substitute 
-                              placeholders in the resource error text. 
-							  Multiple parameters must be separated with "|". 
-							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
-							  If the error text doesn't have any parameter to substitute
-							  strErrTextParam must be an empty string</param>
-            <param name="oObject1">The message refers to this
-                       object. Optional parameter;
-                       can also be NULL. </param>
-            <param name="bImmediateShow">True: The message is
-                             immediately displayed in the
-                             message window. </param>
-            <param name="oObject2">A second object to which
-                       this message also refers.
-                       Optional parameter; can also
-                       be NULL. </param>
-            <param name="strAdditionalInfo">Additional
-                                language\-independent
-                                message text. Is saved as
-                                specified in the database.
-                                Optional parameter; this
-                                string may also be empty. </param>
-            <remarks>
-In order to add an error message to the system messages list,
-please refer to the method <see text="BaseException::FixMessage" cref="M:Eplan.EplApi.Base.BaseException.FixMessage" />.
-</remarks>
-            <exception cref="T:System.ArgumentException">Thrown
-                                              when <c>eRegion</c>
-                                              is
-                                              ePRJMSG_REGION_UNKNOWN.</exception>
-            <example>
-The following example shows how to append the new message
-999025 to the message database of the current project. 
-<code lang="cs" source="P8_API_Example_EServices_PrjMessagesCollection_Add.cs.txt" /></example>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.ShowImmediately">
-            <summary>
-If true, added messages will be immediately displayed in message management window.
-Default value is false.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Remove(Eplan.EplApi.EServices.BaseProjectMessage)">
-            <summary>
-Removes the first occurrence of a specific object from the <c>PrjMessagesCollection</c>.
-</summary>
-            <param name="msg">
-The object to remove to the <c>PrjMessagesCollection</c>.
-</param>
-            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.
-</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.CopyTo(Eplan.EplApi.EServices.BaseProjectMessage[],System.Int32)">
-            <summary>
-Copies the elements of the <c>PrjMessagesCollection</c> to an Array, starting at a particular Array index.
-</summary>
-            <param name="messages">
-The one-dimensional Array that is the destination of the elements copied from <c>PrjMessagesCollection</c>. The Array must have zero-based indexing.
-</param>
-            <exception cref="T:System.ArgumentNullException">
-                <c>messages</c> is a null reference (Nothing in Visual Basic).</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-                <c>arrayIndex</c> is less than 0.</exception>
-            <exception cref="T:System.ArgumentException">
-                <c>messages</c> is multidimensional -or-
-<c>arrayIndex</c> is equal to or greater than the length of <c>messages</c> -or-
-The number of elements in the source <c>PrjMessagesCollection</c> is greater than the available space from <c>arrayIndex</c> to the end of the destination array.
-</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Contains(Eplan.EplApi.EServices.BaseProjectMessage)">
-            <summary>
-Determines whether the <c>PrjMessagesCollection</c> contains a specific value.
-</summary>
-            <param name="message">
-The message to locate in the <c>PrjMessagesCollection</c>.
-</param>
-            <returns>true if item is found in the <c>PrjMessagesCollection</c>; otherwise, false. </returns>
-            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Clear">
-            <summary>
-Removes all items from the <c>PrjMessagesCollection</c>.
-</summary>
-            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Add(Eplan.EplApi.EServices.BaseProjectMessage)">
-            <summary>
-Adds an item to the <c>PrjMessagesCollection</c>.
-</summary>
-            <param name="item">
-The object to add to the <c>PrjMessagesCollection</c>.
-</param>
-            <example>
-The following example shows how to append the new message
-999025 to the message database of the current project. 
-<code lang="cs" source="P8_API_Example_EServices_PrjMessagesCollection_Add.cs.txt" /></example>
-            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.IsReadOnly">
-            <summary>
-Gets a value indicating whether the PrjMessagesCollection is read-only.
-</summary>
-            <value>
-                <c>true</c> if the <c>PrjMessagesCollection</c> is read-only; otherwise, <c>false</c>.
-PrjMessageCollection is never read-only.
-</value>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.Count">
-            <summary>
-Gets the number of elements contained in the PrjMessagesCollection.
-</summary>
-            <value>
- The number of elements contained in the <c>PrjMessagesCollection</c>.
-</value>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetPrjMsgEnumerator">
-            <summary>
-Returns a typed enumerator that can iterate through a collection.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetEnumerator">
-            <summary>
-Returns an enumerator that can iterate through a collection.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetEnumerator2">
-            <summary>
-Returns an enumerator that can iterate through a collection.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.#ctor(Eplan.EplApi.DataModel.Project)">
-            <summary>
-constructor. initializes the matching enumerator.
-</summary>
-            <param name="oProject">messages of this project will be analyzed</param>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.PrjMessagesCollection">
-            <summary>
-Collection of project messages of the last check run (See
-menu "Project data&gt;Messages&gt;Check project..."
-or <see text="VerifyProject method" cref="!:!!OVERLOADED_VerifyProject_Eplan::EplApi::HEServices::Check" />
-).
-</summary>
-            <remarks>
-Adding message to or removing messages from this collection,
-will update the messages visible in message management of
-EPLAN.
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PartVerification.FilterConfigPath">
-            <summery>
-Returns the settings path to this setting where the possible range of the filter is defined.
-</summery>
-            <remarks>
-This property does not defined the user choice of the filter.
-</remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PartVerification.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)">
-            <summary>
-Called by EPLAN when the new project message is added to the
-system. If a new project message was added to a registered
-add-in, the add-in must be registered over again.
-</summary>
-            <param name="eRegion">The new project message will
-                      be added to this <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />.
-                      Part verifications can be registered only in PartMasterData region.
-                      </param>
-            <param name="iMessageId">serial number inside the
-                         chosen region </param>
-            <param name="eClassification">Default <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
-                              of the new message. The <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
-                              could be changed in the
-                              project setting dialog at run
-                              time. </param>
-            <param name="iOrdinal">The new message could
-                       overwrite an existing message
-                       which has the same <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
-                       and the same iMessageId, if
-                       the ordinal number of the new
-                       message is higher. (default\:
-                       20)</param>
-            <remarks>
-PartVerifications can be registered only in PartMasterData region.
-By overriding an existing message, it is only possible to
-change the message text, but not the classification etc.
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PartVerification.VerificationState">
-            <summary>
-The VerificationState determines the actual adjusted check
-type whereas the permission determines what state is
-theoretically allowed at most.
-</summary>
-            <remarks>
-The state must comply to the permission: only weaker states
-can be set dynamically. The state is normally set from scheme
-settings (by the scheme dialog, for instance). supported
-state values for part verifications are:
-
-0=NoExecutionState: The verification will be not executed in
-the next offline check run (certainly not in online mode).
-
-1=OfflineOnlyState: The verification will be executed in an
-offline check run but not online.
-
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PartVerification.MessageId">
-            <summary>
-The ID of the message.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.PartVerification.Region">
-            <summary>
-The region associated with the message.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(System.String,System.String,System.String)">
-            <summary>
-Service function for the error output during a test.
-Text to display is taken from correct IMessage::GetMessageText method.
-</summary>
-            <param name="strPartNumber">
-The error refers to part with this part number. Cannot be empty or null. 
-</param>
-            <param name="strPartVariant">
-The error refers to part in this part variant. Cannot be empty or null. 
-</param>
-            <param name="strTextParameter">
-Parameter values for the message text. This value is used only with messages that use %1!s! variable in their definition.
-</param>
-            <exception cref="T:System.ArgumentException">Thrown when <c>strPartNumber</c> or <c>strPartVariant</c>
-                                              is empty or
-                                              NULL.</exception>
-            <remarks>
-Method does not check if part and part variant exist. 
-</remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.PartVerification">
-            <summary>
-Base class for specific test classes.
-</summary>
-            <seealso cref="!:Verifications" />
-        </member>
-        <member name="M:Eplan.EplApi.EServices.IPartVerification.Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem)">
-            <summary>
-Called by EPLAN when a specific MDPartsDatabaseItem is to be checked. Currently only MDPart objects are passed to this method.
-Implements the "check." 
-</summary>
-            <param name="oMDPartItem">
-This MDPartsDatabaseItem will be checked.
-</param>
-            <example>
-The following example shows a method to check if part has empty ERP number. The error message will be added into message dialog.
-<code lang="C#">
-public override void Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem oMDPartItem)
-{
-	MDPart oPart = oMDPartItem as MDPart;
-	if (oPart != null)
-	{
-		if (oPart.Properties.ARTICLE_ERPNR.IsEmpty)
-		{
-			DoErrorMessage(oPart.PartNr);
-		}                
-	}
-}
-</code></example>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.IPartVerification">
-            <summary>
-Interface declaration for a part check in EPLAN.
-If an add-in wants to add an undefined part check to EPLAN projects 
-this interface must be implemented by a class of the add-in.
-</summary>
-            <seealso cref="!:Verifications" />
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.SelectionInteraction.IsSelectionInteraction">
-            <summary>
-Returns true, if interaction is a helper interaction to select placements.
-</summary>
-            <remarks>By default it returns <c>false</c></remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.SelectionInteraction.IsInsertInteraction">
-            <summary>
-Returns true, if interaction is used to insert one ore more placements on page.
-</summary>
-            <remarks>By default it returns <c>true</c></remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.Finalize">
-            <summary>
-Non-deterministic Finalizer of InsertInteraction object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.Dispose">
-            <summary>
-Destructor for deterministic finalization of InsertInteraction object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.SelectionInteraction.#ctor">
-            <summary> 
-Default constructor.
-</summary>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.Ged.SelectionInteraction">
-            <summary> 
-Base class for specific interactions that selects objects.
 </summary>
         </member>
         <member name="M:EsDevTag.getNestedFunctions(DMFunctionHandle,std.vector&lt;DMFunctionHandle,std.allocator&lt;DMFunctionHandle&gt;&gt;*)">
@@ -1221,6 +299,30 @@ Set the dimension point. This point indicates the vertex of dimension line on th
 </summary>
             <param name="dimDimPoint">The dimension point to set.</param>
         </member>
+        <member name="M:W3D.IMesh.getNextFreeId">
+get next free unique id
+</member>
+        <member name="M:W3D.IMesh.getTransparency">
+get material
+</member>
+        <member name="M:W3D.IMesh.setEdgeLinetype(EColor,W3D.Linetype_T,System.Double)">
+set edge linetype
+</member>
+        <member name="M:W3D.IMesh.getEdgeColor">
+get edge linetype
+</member>
+        <member name="M:W3D.IMesh.setMaterial(EColor,System.Boolean,EString)">
+set material
+</member>
+        <member name="M:W3D.IMesh.getColor">
+get material
+</member>
+        <member name="M:W3D.IMesh.getFaceCount">
+get number of faces
+</member>
+        <member name="T:W3D.IMesh">
+represents a polygon mesh in 3d
+</member>
         <member name="T:DmgSpecialMirrorRotateTexts">
             <summary>
 This is a class for transforming texts in a special manner used e.g. for
@@ -1238,18 +340,62 @@ methods converts spline into a polyline
 	between pntstart and pntend</param>
             <returns>true if everything is allright </returns>
         </member>
-        <member name="F:Aflicense.m_bIsLicensingAvailable">
-is licensing is available
-</member>
-        <member name="M:Aflicense.isLicensingAvailable">
+        <member name="M:AfLc.isLicensingAvailable">
 Checks if licensing is available
 </member>
-        <member name="F:AfApplication.sm_Application">
+        <member name="F:AfLcData.m_bIsLicensingAvailable">
+is licensing is available
+</member>
+        <member name="F:AfApplication.m_bIdentityClientInitialized">
 ************************************************************************
 ************************************************************************
 </member>
-        <member name="T:EUnicodeConverter">
-EUnicodeConverter.h
+        <member name="M:AfApplication.signout">
+Internal methods
+Following methods are intended to be called ONLY by the Platform Framework or Unit tests
+</member>
+        <member name="M:IEIdentityClientService.signout">
+Signs out user
+</member>
+        <member name="M:IEIdentityClientService.startAuthentication">
+Internal methods
+Following methods are intended to be called ONLY by the Platform Framework or Unit tests
+</member>
+        <member name="M:IEIdentityClientService.getAccessToken(EString,EString*)">
+Gets AccessToken for a ClientId
+</member>
+        <member name="M:IEIdentityClientService.registerClientId(EString)">
+Registers ClientId
+</member>
+        <member name="M:IEIdentityClientService.getConsentForUX">
+Gets consent for the user experience program
+</member>
+        <member name="M:IEIdentityClientService.getUserProfile(EPulseUserProfile*)">
+Gets user profile
+</member>
+        <member name="M:IEIdentityClientService.getSkipSigninFlag">
+Gets skip sign in flag
+</member>
+        <member name="M:IEIdentityClientService.setSkipSigninFlag(System.Boolean)">
+Sets skip sign in flag
+</member>
+        <member name="M:IEIdentityClientService.isUserAuthenticated">
+Checks if user is authenticated
+</member>
+        <member name="M:IEIdentityClientService.getSignedoutFlag">
+Gets Signed out flag
+</member>
+        <member name="M:IEIdentityClientService.setSignedoutFlag(System.Boolean)">
+Sets Signed out flag
+</member>
+        <member name="T:boost.mpl.less_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
+</member>
+        <member name="T:boost.mpl.times_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
+</member>
+        <member name="T:boost.mpl.equal_to_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
 </member>
         <member name="M:op_BitwiseAnd(IEArchive*,EColor*)">
 global operator to write an EColor into an archive or to read it from
@@ -1927,6 +1073,305 @@ circle 2*PI
         <member name="F:AT_DEGREE">
 circle 360°
 </member>
+        <member name="P:Eplan.EplApi.EServices.Message.MessageState">
+            <summary>
+The MessageState determines the actual adjusted check type 
+</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.Message.MessageStateType.None">
+            <summary>None</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.Message.MessageStateType.ModuleSpecific">
+            <summary>Module-Specific</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Message.MessageStateType">
+            <summary>
+Message state types
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Message.DoHelp">
+            <summary>
+Called by EPLAN when the help text to the message should be shown.
+the function itself must take care to call the matching help system
+with the correct language. 
+The easiest way is to call a simple dialog or message box.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Message.GetMessageText">
+            <summary>
+Called by EPLAN when the message text should be shown. 
+</summary>
+            <remarks>
+To allow multilingualism in Eplan projects, it's not the message text 
+itself that will be saved in the project but well-defined properties which 
+must be language independent. 
+The function itself is responsible 
+for getting the text in the correct language. 
+Eplan provides special settings and functions to determine what language is actually used.
+
+The message text may contain place holders for substitution, e.g. "This here will be replaced: %1!s!" 
+A place holder begins with '%' followed by a serial number. 
+'!s!' will be replaced by the given text for substitution. 
+The message text will be saved in the project message database and should be language independent. 
+The text for substitution should be declared when the message will be added to the project.
+
+This message is called not only during a verification action but also when messages already existing in a project
+(generated by earlier verifications) have to be displayed.
+</remarks>
+            <returns>
+The message's text in correct language
+</returns>
+            <seealso text="Eplan.EplApi.EServices.MessageManager" cref="!:Eplan::EplApi::EServices::MessageManager" />
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Message.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)">
+            <summary>
+Called by EPLAN when the new project message is added to the
+system. If a new project message was added to a registered
+add-in, the add-in must be registered over again.
+</summary>
+            <param name="eRegion">The new project message will
+                      be added to this <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />.
+                      Add\-ins should be use region
+                      ePRJMSG_REGION_EXTERNALS. </param>
+            <param name="iMessageId">serial number inside the
+                         chosen region </param>
+            <param name="eClassification">Default <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
+                              of the new message. The <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
+                              could be changed in the
+                              project setting dialog at run
+                              time. </param>
+            <param name="iOrdinal">The new message could
+                       overwrite an existing message
+                       which has the same <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                       and the same iMessageId, if
+                       the ordinal number of the new
+                       message is higher. (default\:
+                       20)</param>
+            <remarks>
+By overriding an existing message, it is only possible to
+change the message text, but not the classification etc.
+</remarks>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Message">
+            <summary>
+Base class for electrotechnical messages.
+If an add-in wants to add an undefined project message to EPLAN projects,
+then the class of the add-in must inherit from the Eplan.EplApi.EServices.Message class.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.FunctionVerification.FilterConfigPath">
+            <summery>
+Returns the settings path to this setting where the possible range of the filter is defined.
+</summery>
+            <remarks>
+This property does not defined the user choice of the filter.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.FunctionVerification.AdditionalObjectsFilter">
+            <summary>
+Type of class which filters objects that are additionally passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
+</summary>
+            <remarks>
+                <para>
+Set of types that can be passed to be verified, is created from type returned by this property and all type that inherit from it.
+</para>
+                <para>
+Depending on the value of the filter, framework can also pass additional object to be checked. They are objects of classes:
+Connections, DeviceListEntry, ArticleReference and PlanningSegment.
+</para>
+                <para>This property is used only when check is done for hole project.</para>
+                <para>This property is only a tip for framework. Set of objects 
+passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
+executed in current check.</para>
+                <para>
+While check of whole project is done all pages and installation spaces are always passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method,
+regardless value of this property.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.FunctionVerification.ObjectsFilter">
+            <summary>
+Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
+</summary>
+            <remarks>
+                <para>This property is used only when check is done for hole project.</para>
+                <para>This property is only a tip for framework. Set of objects 
+passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
+executed in current check.</para>
+                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
+            </remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.FunctionVerification.GetAllFunctionsWithSameName(Eplan.EplApi.DataModel.Function,System.Collections.ArrayList@)">
+            <summary>
+Returns all functions of the project with the same name.
+Can be called within the Execute function. 
+</summary>
+            <remarks>
+This function uses an internal buffer mechanism and is therefore very quick when 
+called several times in a check routine.
+</remarks>
+            <param name="oFunction">
+The function based on which other functions with the same name are to be searched.
+</param>
+            <param name="colFunctions">
+The list of results giving all functions with the same name.
+</param>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.FunctionVerification.Finalize">
+            <summary>
+Non-deterministic Finalizer of ClassName object.
+</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.FunctionVerification">
+            <summary>
+Base class for specific verification classes that only check
+functions.
+</summary>
+            <remarks>
+When using following inheritance hierarchy :
+
+Interface, inheriting abstract class, and then normal class,
+(like IMessage-\&gt;PotentialVerification -\&gt;VerificationExample)
+under .Net 2.0 there is a run-time error while loading add-in
+("Unable to load one or more of the requested types. Retrieve
+the LoaderExceptions property for more information")
+</remarks>
+            <example>  
+Current workaround is to add interface names after class
+identifier, so such declaration as:
+
+<code><b>public</b><b>class</b> VerificationExample: PotentialVerification
+{}
+// Should be substituted by :
+<b>public</b><b>class</b> VerificationExample: PotentialVerification : IVerification : IMessage
+{}
+</code></example>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.IFunctionVerification.AddCategoryFilter(Eplan.EplApi.Base.Enums.FunctionCategory@)">
+            <summary>
+This type of check is only performed for a certain function category.
+</summary>
+            <param name="eCategory">
+Function category for which this check is to be made.
+</param>
+            <remarks>
+Method AddCategoryFilter is called only when registering the Add-in (it is not executed every project checking).
+</remarks>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.IFunctionVerification">
+            <summary>
+Interface for a special verification class.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Prio">
+            <summary>
+Priority of interaction.
+</summary>
+            <remarks>
+If interaction is started while another interaction is running then the one with the lower
+priority will be deactivated until all interactions with higher priority will be finished.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Ordinal">
+            <summary>
+Overload level of interaction.
+</summary>
+            <remarks>
+The new interaction can overwrite an existing interaction which has the same Name 
+and if the ordinal number of the new interaction is higher.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.NameOfBaseInteraction">
+            <summary>
+Name of interaction which will be override.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InteractionAttribute.Name">
+            <summary>
+Name under interaction will be registered.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.Finalize">
+            <summary>
+Non-deterministic Finalizer of InteractionAttribute object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.Dispose">
+            <summary>
+Destructor for deterministic finalization of InteractionAttribute object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InteractionAttribute.#ctor">
+            <summary> 
+Default constructor.
+</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Ged.InteractionAttribute">
+            <summary> 
+TODO
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.Finalize">
+            <summary>
+Non-deterministic Finalizer of BaseInteractionAttribute object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.Dispose">
+            <summary>
+Destructor for deterministic finalization of BaseInteractionAttribute object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute.#ctor(System.String)">
+            <summary> 
+Default constructor.
+</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Ged.BaseInteractionAttribute">
+            <summary> 
+TODO
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.InsertedItems">
+            <summary>
+Returns placements inserted by interaction.
+</summary>
+            <remarks>
+For overriden interactions this property should be set by interaction itself.
+For other - custom interactions, this property is availabe to be set manually.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.IsSelectionInteraction">
+            <summary>
+Returns true, if interaction is a helper interaction to select placements.
+</summary>
+            <remarks>By default it returns <c>false</c></remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.IsInsertInteraction">
+            <summary>
+Returns true, if interaction is used to insert one ore more placements on page.
+</summary>
+            <remarks>By default it returns <c>true</c></remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.Finalize">
+            <summary>
+Non-deterministic Finalizer of InsertInteraction object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.Dispose">
+            <summary>
+Destructor for deterministic finalization of InsertInteraction object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.#ctor">
+            <summary> 
+Default constructor.
+</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Ged.InsertInteraction">
+            <summary> 
+Base class for specific interactions that inserts objects.
+</summary>
+        </member>
         <member name="P:Eplan.EplApi.EServices.InterruptionPointVerification.FilterConfigPath">
             <summery>
 Returns the settings path to this setting where the possible range of the filter is defined.
@@ -1958,18 +1403,6 @@ regardless value of this property.
             </remarks>
         </member>
         <member name="P:Eplan.EplApi.EServices.InterruptionPointVerification.ObjectsFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.InterruptionPointVerification.ObjectsTypeFilter">
             <summary>
 Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
 </summary>
@@ -2058,29 +1491,7 @@ identifier, so such declaration as:
 Interface for a special test class.
 </summary>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.Project">
-            <summary>
-Returns project in context of which the verification is run.
-</summary>
-            <remarks>
-                <para>
-Each time when offline verification is started then it is done for some project all for some elements of a project.
-This property returns such project. However this isn't true if the check is done as online verification. In current version
-of EPLAN this will return <c>null</c> instead of a project.
-</para>
-                <para>
-Have in mind that the project object returned by this property isn't lock base on flag 
-<see text="LockProjectByDefault" cref="!:Eplan::EplApi::HEServices::SelectionSet::LockProjectByDefault" /> as it is done
-when it is returned by <see text="GetCurrentProject" cref="!:Eplan::EplApi::HEServices::SelectionSet::GetCurrentProject" /> or
-<see text="OpenProjects" cref="P:Eplan.EplApi.DataModel.ProjectManager.OpenProjects" />. Also please notes that locking any object in
-code of verification can have bed influence on performance.
-</para>
-            </remarks>
-            <returns>
-Project for which this verification is run, or <c>null</c>.
-</returns>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.FilterConfigPath">
+        <member name="P:Eplan.EplApi.EServices.PartVerification.FilterConfigPath">
             <summery>
 Returns the settings path to this setting where the possible range of the filter is defined.
 </summery>
@@ -2088,97 +1499,37 @@ Returns the settings path to this setting where the possible range of the filter
 This property does not defined the user choice of the filter.
 </remarks>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.AdditionalObjectsFilter">
+        <member name="M:Eplan.EplApi.EServices.PartVerification.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)">
             <summary>
-Type of class which filters objects that are additionally passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
+Called by EPLAN when the new project message is added to the
+system. If a new project message was added to a registered
+add-in, the add-in must be registered over again.
 </summary>
+            <param name="eRegion">The new project message will
+                      be added to this <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />.
+                      Part verifications can be registered only in PartMasterData region.
+                      </param>
+            <param name="iMessageId">serial number inside the
+                         chosen region </param>
+            <param name="eClassification">Default <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
+                              of the new message. The <see text="Eplan.EplApi.EServices.IMessage.Classification" cref="T:Eplan.EplApi.EServices.IMessage.Classification" />
+                              could be changed in the
+                              project setting dialog at run
+                              time. </param>
+            <param name="iOrdinal">The new message could
+                       overwrite an existing message
+                       which has the same <see text="Eplan.EplApi.EServices.IMessage.Region" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                       and the same iMessageId, if
+                       the ordinal number of the new
+                       message is higher. (default\:
+                       20)</param>
             <remarks>
-                <para>
-Set of types that can be passed to be verified, is created from type returned by this property and all type that inherit from it.
-</para>
-                <para>
-Depending on the value of the filter, framework can also pass additional object to be checked. They are objects of classes:
-Connections, DeviceListEntry, ArticleReference and PlanningSegment.
-</para>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>
-While check of whole project is done all pages and installation spaces are always passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method,
-regardless value of this property.
-</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.ObjectsFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.ObjectsTypeFilter">
-            <summary>
-Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
-</summary>
-            <remarks>
-                <para>This property is used only when check is done for hole project.</para>
-                <para>This property is only a tip for framework. Set of objects 
-passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
-executed in current check.</para>
-                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
-            </remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.RemoveOldMessages">
-            <summary>
-If true, all messages with the same region and message id are removed after OnStartInspection is called.
-</summary>
-            <remarks>
-                <p>Setting this property gives the effect only if it is done in method OnStartInspection.</p>
-                <p>By default this value is <c>false</c></p>.
+PartVerifications can be registered only in PartMasterData region.
+By overriding an existing message, it is only possible to
+change the message text, but not the classification etc.
 </remarks>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.VerificationPermission">
-            <summary>
-The permission of a verification determines for what type of
-check the verification is enabled at most/ maximum.
-</summary>
-            <remarks>
-The permission should only initialized one-time (typically in
-the constructor in your verification class; default value is
-OnlineOfflinePermitted) and should not change during runtime.
-Supported permission values are:
-
-0=NoExecutionPermitted: Verifications with
-"NoExecutionPermitted" are no 'real' verifications
-These so called "dummy verifications" are only used
-to delete simple project messages before an offline check run
-starts.
-
-1=OfflineOnlyPermitted: Verification with this permission
-will only be executed in an offline check run. This
-verification is not allowed to be executed in online- state.
-Use this permission if your verification is very complex.
-
-2=OnlineOfflinePermitted: If you choose this permission the
-verification will be executed in online- as well as in
-offline- mode. To avoid performance problems the verification
-should be fast. OnlineOfflinePermitted is the default.
-
-3=RestrictivePermitted: Verifications with this permission
-will be executed in online- as well as in offline-mode(so the
-verification should be fast). In the online state a dialog
-will be shown and the change, that generated the project
-message will be canceled. In the offline state the
-verification will be executed but without the undo. 
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.VerificationState">
+        <member name="P:Eplan.EplApi.EServices.PartVerification.VerificationState">
             <summary>
 The VerificationState determines the actual adjusted check
 type whereas the permission determines what state is
@@ -2188,7 +1539,7 @@ theoretically allowed at most.
 The state must comply to the permission: only weaker states
 can be set dynamically. The state is normally set from scheme
 settings (by the scheme dialog, for instance). supported
-state values are:
+state values for part verifications are:
 
 0=NoExecutionState: The verification will be not executed in
 the next offline check run (certainly not in online mode).
@@ -2196,237 +1547,425 @@ the next offline check run (certainly not in online mode).
 1=OfflineOnlyState: The verification will be executed in an
 offline check run but not online.
 
-2=OnlineOfflineState: The verification will be executed in an
-offline check run as well as online. "Online"
-means, that every time an undo step opens (an object is
-changed, a new object is inserted or an object is deleted),
-the verification will be executed. OnlineOfflineState is the
-default.
-
-3=RestrictiveState: The verification will be executed in an
-offline check run as well as online. Additionally in online
-mode and if the verification announces an error, the last
-change will be canceled. This state can only be set if the
-permission of the verification was initialized with
-RestrictivePermitted. 
 </remarks>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.MessageId">
+        <member name="P:Eplan.EplApi.EServices.PartVerification.MessageId">
             <summary>
-The ID of the message. Is automatically set. 
+The ID of the message.
 </summary>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Verification.Region">
+        <member name="P:Eplan.EplApi.EServices.PartVerification.Region">
             <summary>
-The region associated with the message. Is automatically set. 
+The region associated with the message.
 </summary>
         </member>
-        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject,Eplan.EplApi.DataModel.StorableObject,System.String)">
+        <member name="M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(System.String,System.String,System.String)">
             <summary>
 Service function for the error output during a test.
 Text to display is taken from correct IMessage::GetMessageText method.
 </summary>
-            <param name="oFirstObject">
-The error refers to this object. 
+            <param name="strPartNumber">
+The error refers to part with this part number. Cannot be empty or null. 
 </param>
-            <param name="oSecondObject">
-Another object that caused the error. 
+            <param name="strPartVariant">
+The error refers to part in this part variant. Cannot be empty or null. 
 </param>
             <param name="strTextParameter">
 Parameter values for the message text. This value is used only with messages that use %1!s! variable in their definition.
 </param>
-            <exception cref="T:System.ArgumentException">Thrown when <c>oFirstObject</c>
-                                              is invalid or
+            <exception cref="T:System.ArgumentException">Thrown when <c>strPartNumber</c> or <c>strPartVariant</c>
+                                              is empty or
                                               NULL.</exception>
+            <remarks>
+Method does not check if part and part variant exist. 
+</remarks>
         </member>
-        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject,System.String)">
-            <summary>
-Service function for the error output during a test.
-Text to display is taken from correct IMessage::GetMessageText method.
-</summary>
-            <param name="oObject">
-The error refers to this object. 
-</param>
-            <param name="strTextParameter">
-Parameter values for the message text. This value is used only with messages that use %1!s! variable in their definition.
-</param>
-            <exception cref="T:System.ArgumentException">Thrown when <c>oObject</c>
-                                              is invalid or
-                                              NULL.</exception>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject)">
-            <summary>
-Service function for the error output during a test.
-Text to display is taken from correct IMessage::GetMessageText method.
-</summary>
-            <param name="oObject">
-The error refers to this object. 
-</param>
-            <exception cref="T:System.ArgumentException">Thrown when <c>oObject</c>
-                                              is invalid or
-                                              NULL.</exception>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.Verification">
+        <member name="T:Eplan.EplApi.EServices.PartVerification">
             <summary>
 Base class for specific test classes.
 </summary>
             <seealso cref="!:Verifications" />
         </member>
-        <member name="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)">
+        <member name="M:Eplan.EplApi.EServices.IPartVerification.Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem)">
             <summary>
-Called by EPLAN when a specific object is to be checked.
+Called by EPLAN when a specific MDPartsDatabaseItem is to be checked. Currently only MDPart objects are passed to this method.
 Implements the "check." 
 </summary>
-            <param name="oObject1">
-This object is to be checked. 
+            <param name="oMDPartItem">
+This MDPartsDatabaseItem will be checked.
 </param>
             <example>
-The following example shows a method to prevent creating rectangle on page with plant "ETH".
-This is an example of verification with type - prevent. The error message will not be added into message dialog
-but message box will be displayed and creation of rectangle will be automatically canceled.
+The following example shows a method to check if part has empty ERP number. The error message will be added into message dialog.
 <code lang="C#">
-public override void Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem oItem)
+public override void Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem oMDPartItem)
 {
-    if (this.VerificationState == IVerification.VerificationState.RestrictiveState)
-    {
-        Rectangle oRectangle = oObject as Rectangle;
-        if (oRectangle != null)
-        {
-            if (oRectangle.Page != null)
-            {
-                if (oRectangle.Page.Properties.DESIGNATION_FULLPLANT == "ETH")
-                {
-                    DoErrorMessage(oRectangle, oRectangle.Page.Name);
-                }
-            }
-        }
-    }
+	MDPart oPart = oMDPartItem as MDPart;
+	if (oPart != null)
+	{
+		if (oPart.Properties.ARTICLE_ERPNR.IsEmpty)
+		{
+			DoErrorMessage(oPart.PartNr);
+		}                
+	}
 }
 </code></example>
         </member>
-        <member name="T:Eplan.EplApi.EServices.IVerification">
+        <member name="T:Eplan.EplApi.EServices.IPartVerification">
             <summary>
-Interface declaration for an electrotechnical check in EPLAN.
-If an add-in wants to add an undefined check to EPLAN projects 
+Interface declaration for a part check in EPLAN.
+If an add-in wants to add an undefined part check to EPLAN projects 
 this interface must be implemented by a class of the add-in.
 </summary>
             <seealso cref="!:Verifications" />
         </member>
-        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnEndInspection">
+        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.ReuseMessages">
             <summary>
-Called by EPLAN when a check routine has been completed. 
+Determines whether new message can be duplicated in collection. Default value is <c>false</c>.
 </summary>
             <remarks>
-Note: OnStartInspection/OnEndInspection methods are called for each verification registered in the system
-when the check routine starts/ends regardless of type of the check (online/offline) 
-and regardless of the verification's category filter.
+If <c>true</c> and message of same id, region and assign objects exists in collection then no new message will be added to collection.
+If <c>false</c> new message is always added to collection.
 </remarks>
         </member>
-        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnStartInspection(System.Boolean)">
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.Boolean,System.String,System.Int16)">
             <summary>
-Called by EPLAN when a check routine starts in the system. 
+Adds a new message associated with part number to the project's message management window.
 </summary>
-            <param name="bOnline">
-True: An online check is made.
-False: An offline check is made.
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="strPartNumber">The message refers to this
+                       part number. Cannot be empty or null. </param>
+            <param name="strPartVariant">The message refers to this
+                       part variant. Cannot be empty or null. </param>
+            <param name="bImmediateShow">True\: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <param name="nCreationType">Additional information about the source of the message.
+                            Possible values are:
+                                0 - undefined,
+                                1 - Online verification
+                                2 - Offline verification
+                                3 - Explicit creation
+                            Note: In order to add a message with nCreationType = 3,
+                            it must be registered and enabled in the message management.</param>
+            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
+            <remarks>
+Method does not check if part and part variant exist. 
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.Boolean,System.String,System.Int16)">
+            <summary>
+Adds a new message associated with part number to the project's message management window.
+</summary>
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="strPartNumber">The message refers to this
+                       part number. Cannot be empty or null. </param>
+            <param name="bImmediateShow">True\: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <param name="nCreationType">Additional information about the source of the message.
+                            Possible values are:
+                                0 - undefined,
+                                1 - Online verification
+                                2 - Offline verification
+                                3 - Explicit creation
+                            Note: In order to add a message with nCreationType = 3,
+                            it must be registered and enabled in the message management.</param>
+            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
+            <remarks>
+Message by default is related to variant '1' of the part.
+Method does not check if part exist. 
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+Adds a new message associated with part number to the project's message management window. Message is related to variant = 0.
+</summary>
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="strPartNumber">The message refers to this
+                       part number. Cannot be empty or null. </param>
+            <param name="strPartVariant">The message refers to this
+                       part variant. Cannot be empty or null. </param>
+            <param name="bImmediateShow">True\: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
+            <remarks>
+Method does not check if part and part variant exist. 
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+Adds a new message associated with part number to the project's message management window.
+</summary>
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="strPartNumber">The message refers to this
+                       part number in variant '1'. Cannot be empty or null. </param>
+            <param name="bImmediateShow">True\: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <exception cref="T:System.ArgumentException">Thrown in case of invalid arguments.</exception>
+            <remarks>
+Message by default is related to variant '1' of the part.
+Method does not check if part exist. 
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,Eplan.EplApi.DataModel.StorableObject,System.Boolean,Eplan.EplApi.DataModel.StorableObject,System.String,System.Int16)">
+            <summary>
+Adds a new message to the project's message management window.
+</summary>
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="oObject1">The message refers to this
+                       object. Optional parameter;
+                       can also be NULL. </param>
+            <param name="bImmediateShow">True\: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="oObject2">A second object to which
+                       this message also refers.
+                       Optional parameter; can also
+                       be NULL. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <param name="nCreationType">Additional information about the source of the message.
+                            Possible values are:
+                                0 - undefined,
+                                1 - Online verification
+                                2 - Offline verification
+                                3 - Explicit creation
+                            Note: In order to add a message with nCreationType = 3,
+                            it must be registered and enabled in the message management.</param>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.AddMessage(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,Eplan.EplApi.DataModel.StorableObject,System.Boolean,Eplan.EplApi.DataModel.StorableObject,System.String)">
+            <summary>
+Adds a new message to the database with electrotechnical
+messages (Project data\Messages\Management).
+Any existing message from the system can be added as well as
+messages registered by an add-in.
+</summary>
+            <param name="eRegion">A message of this <see text="Eplan.EplApi.EServices.IMessage.REGION" cref="T:Eplan.EplApi.EServices.IMessage.Region" />
+                      is added. </param>
+            <param name="nErrNr">A message with this message
+                     number is added. </param>
+            <param name="strErrTextParam">reference to a parameterstring to substitute 
+                              placeholders in the resource error text. 
+							  Multiple parameters must be separated with "|". 
+							  In the error text parameters should be signed by "%1!s!", "%2!s!" etc.
+							  If the error text doesn't have any parameter to substitute
+							  strErrTextParam must be an empty string</param>
+            <param name="oObject1">The message refers to this
+                       object. Optional parameter;
+                       can also be NULL. </param>
+            <param name="bImmediateShow">True: The message is
+                             immediately displayed in the
+                             message window. </param>
+            <param name="oObject2">A second object to which
+                       this message also refers.
+                       Optional parameter; can also
+                       be NULL. </param>
+            <param name="strAdditionalInfo">Additional
+                                language\-independent
+                                message text. Is saved as
+                                specified in the database.
+                                Optional parameter; this
+                                string may also be empty. </param>
+            <remarks>
+In order to add an error message to the system messages list,
+please refer to the method <see text="BaseException::FixMessage" cref="M:Eplan.EplApi.Base.BaseException.FixMessage" />.
+</remarks>
+            <exception cref="T:System.ArgumentException">Thrown
+                                              when <c>eRegion</c>
+                                              is
+                                              ePRJMSG_REGION_UNKNOWN.</exception>
+            <example>
+The following example shows how to append the new message
+999025 to the message database of the current project. 
+<code lang="cs" source="P8_API_Example_EServices_PrjMessagesCollection_Add.cs.txt" /></example>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.ShowImmediately">
+            <summary>
+If true, added messages will be immediately displayed in message management window.
+Default value is false.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Remove(Eplan.EplApi.EServices.BaseProjectMessage)">
+            <summary>
+Removes the first occurrence of a specific object from the <c>PrjMessagesCollection</c>.
+</summary>
+            <param name="msg">
+The object to remove to the <c>PrjMessagesCollection</c>.
 </param>
-            <remarks>
-Note: OnStartInspection/OnEndInspection methods are called for each verification registered in the system
-when the check routine starts/ends regardless of type of the check (online/offline) 
-and regardless of the verification's category filter.
-</remarks>
+            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.
+</exception>
         </member>
-        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnRegister(System.String@,System.Int32@)">
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.CopyTo(Eplan.EplApi.EServices.BaseProjectMessage[],System.Int32)">
             <summary>
-Called by EPLAN when the new check is added to the system.
+Copies the elements of the <c>PrjMessagesCollection</c> to an Array, starting at a particular Array index.
+</summary>
+            <param name="messages">
+The one-dimensional Array that is the destination of the elements copied from <c>PrjMessagesCollection</c>. The Array must have zero-based indexing.
+</param>
+            <exception cref="T:System.ArgumentNullException">
+                <c>messages</c> is a null reference (Nothing in Visual Basic).</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+                <c>arrayIndex</c> is less than 0.</exception>
+            <exception cref="T:System.ArgumentException">
+                <c>messages</c> is multidimensional -or-
+<c>arrayIndex</c> is equal to or greater than the length of <c>messages</c> -or-
+The number of elements in the source <c>PrjMessagesCollection</c> is greater than the available space from <c>arrayIndex</c> to the end of the destination array.
+</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Contains(Eplan.EplApi.EServices.BaseProjectMessage)">
+            <summary>
+Determines whether the <c>PrjMessagesCollection</c> contains a specific value.
+</summary>
+            <param name="message">
+The message to locate in the <c>PrjMessagesCollection</c>.
+</param>
+            <returns>true if item is found in the <c>PrjMessagesCollection</c>; otherwise, false. </returns>
+            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Clear">
+            <summary>
+Removes all items from the <c>PrjMessagesCollection</c>.
+</summary>
+            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.Add(Eplan.EplApi.EServices.BaseProjectMessage)">
+            <summary>
+Adds an item to the <c>PrjMessagesCollection</c>.
+</summary>
+            <param name="item">
+The object to add to the <c>PrjMessagesCollection</c>.
+</param>
+            <example>
+The following example shows how to append the new message
+999025 to the message database of the current project. 
+<code lang="cs" source="P8_API_Example_EServices_PrjMessagesCollection_Add.cs.txt" /></example>
+            <exception cref="T:System.NotSupportedException">The <c>PrjMessagesCollection</c> is read-only.</exception>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.IsReadOnly">
+            <summary>
+Gets a value indicating whether the PrjMessagesCollection is read-only.
+</summary>
+            <value>
+                <c>true</c> if the <c>PrjMessagesCollection</c> is read-only; otherwise, <c>false</c>.
+PrjMessageCollection is never read-only.
+</value>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.PrjMessagesCollection.Count">
+            <summary>
+Gets the number of elements contained in the PrjMessagesCollection.
+</summary>
+            <value>
+ The number of elements contained in the <c>PrjMessagesCollection</c>.
+</value>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetPrjMsgEnumerator">
+            <summary>
+Returns a typed enumerator that can iterate through a collection.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetEnumerator">
+            <summary>
+Returns an enumerator that can iterate through a collection.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.GetEnumerator2">
+            <summary>
+Returns an enumerator that can iterate through a collection.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.PrjMessagesCollection.#ctor(Eplan.EplApi.DataModel.Project)">
+            <summary>
+constructor. initializes the matching enumerator.
+</summary>
+            <param name="oProject">messages of this project will be analyzed</param>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.PrjMessagesCollection">
+            <summary>
+Collection of project messages of the last check run (See
+ribbon "Tools&gt;Review&gt;Check"
+or <see text="VerifyProject method" cref="!:!!OVERLOADED_VerifyProject_Eplan::EplApi::HEServices::Check" />
+).
 </summary>
             <remarks>
-It is not allowed to override the functionality of an
-existing check. Only the message text can be changed as
-described in <see text="Eplan.EplApi.EServices.IMessage.OnRegister" cref="M:Eplan.EplApi.EServices.IMessage.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)" /></remarks>
-            <param name="strName">The new check is saved with this name
-                      in the system. </param>
-            <param name="iOrdinal">Overload level for the new check. </param>
-            <remarks>
-It is not possible to overwrite an existing verification. The
-overload level is just needed for registration purposes.
+Adding message to or removing messages from this collection,
+will update the messages visible in message management of
+EPLAN.
 </remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.IVerificationBase.VerificationState">
-            <summary>
-The VerificationState determines the actual adjusted check
-type whereas the permission determines what state is
-theoretically allowed at most.
-</summary>
-            <remarks>
-The state must comply to the permission: only weaker states
-can be set dynamically. The state is normally set from scheme
-settings (by the scheme dialog, for instance). Supported
-state values are:
-
-0=NoExecutionState: The verification will be not executed in
-the next offline check run (certainly not in online mode).
-
-1=OfflineOnlyState: The verification will be executed in an
-offline check run but not online.
-
-2=OnlineOfflineState: The verification will be executed in an
-offline check run as well as online. "Online"
-means, that every time an undo step opens (an object is
-changed, a new object is inserted or an object is deleted),
-the verification will be executed. OnlineOfflineState is the
-default.
-
-3=RestrictiveState: The verification will be executed in an
-offline check run as well as online. Additionally in online
-mode and if the verification announces an error, the last
-change will be canceled. This state can only be set if the
-permission of the verification was initialized with
-RestrictivePermitted. 
-</remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.IVerificationBase.Permission">
-            <summary>
-The permission of a verification determines for what type of
-check the verification is enabled at most/ maximum.
-</summary>
-            <remarks>
-The permission should only initialized one-time (typically in
-the constructor in your verification class; default value is
-OnlineOfflinePermitted) and should not change during runtime.
-Supported permission values are:
-
-0=NoExecutionPermitted: Verifications with
-"NoExecutionPermitted" are no 'real' verifications
-These so called "dummy verifications" are only used
-to delete simple project messages before an offline check run
-starts.
-
-1=OfflineOnlyPermitted: Verification with this permission
-will only be executed in an offline check run. This
-verification is not allowed to be executed in online- state.
-Use this permission if your verification is very complex.
-
-2=OnlineOfflinePermitted: If you choose this permission the
-verification will be executed in online- as well as in
-offline- mode. To avoid performance problems the verification
-should be fast. OnlineOfflinePermitted is the default.
-
-3=RestrictivePermitted: Verifications with this permission
-will be executed in online- as well as in offline-mode(so the
-verification should be fast). In the online state a dialog
-will be shown and the change, that generated the project
-message will be canceled. In the offline state the
-verification will be executed but without the undo. 
-</remarks>
-        </member>
-        <member name="T:Eplan.EplApi.EServices.IVerificationBase">
-            <summary>
-Base interface declaration for a check in EPLAN.
-If an add-in wants to add an undefined check to EPLAN projects 
-please implement interface IVerification or IPartVerification.
-</summary>
-            <seealso cref="!:Verifications" />
         </member>
         <member name="P:Eplan.EplApi.EServices.PrjMessagesRegisteredCollection.Count">
             <summary>
@@ -2964,6 +2503,364 @@ Default constructor.
 TODO
 </summary>
         </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.Project">
+            <summary>
+Returns project in context of which the verification is run.
+</summary>
+            <remarks>
+                <para>
+Each time when offline verification is started then it is done for some project all for some elements of a project.
+This property returns such project. However this isn't true if the check is done as online verification. In current version
+of EPLAN this will return <c>null</c> instead of a project.
+</para>
+                <para>
+Have in mind that the project object returned by this property isn't lock base on flag 
+<see text="LockProjectByDefault" cref="!:Eplan::EplApi::HEServices::SelectionSet::LockProjectByDefault" /> as it is done
+when it is returned by <see text="GetCurrentProject" cref="!:Eplan::EplApi::HEServices::SelectionSet::GetCurrentProject" /> or
+<see text="OpenProjects" cref="P:Eplan.EplApi.DataModel.ProjectManager.OpenProjects" />. Also please notes that locking any object in
+code of verification can have bed influence on performance.
+</para>
+            </remarks>
+            <returns>
+Project for which this verification is run, or <c>null</c>.
+</returns>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.FilterConfigPath">
+            <summery>
+Returns the settings path to this setting where the possible range of the filter is defined.
+</summery>
+            <remarks>
+This property does not defined the user choice of the filter.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.AdditionalObjectsFilter">
+            <summary>
+Type of class which filters objects that are additionally passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
+</summary>
+            <remarks>
+                <para>
+Set of types that can be passed to be verified, is created from type returned by this property and all type that inherit from it.
+</para>
+                <para>
+Depending on the value of the filter, framework can also pass additional object to be checked. They are objects of classes:
+Connections, DeviceListEntry, ArticleReference and PlanningSegment.
+</para>
+                <para>This property is used only when check is done for hole project.</para>
+                <para>This property is only a tip for framework. Set of objects 
+passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
+executed in current check.</para>
+                <para>
+While check of whole project is done all pages and installation spaces are always passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method,
+regardless value of this property.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.ObjectsFilter">
+            <summary>
+Collection of objects types which will be used to determine objects passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method.
+</summary>
+            <remarks>
+                <para>This property is used only when check is done for hole project.</para>
+                <para>This property is only a tip for framework. Set of objects 
+passed to <see text="Execute" cref="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)" /> method is a sum of types passed by all verifications
+executed in current check.</para>
+                <para>Objects of all types inherit from types passed by this property are also checked by verification.</para>
+            </remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Verification.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)">
+            <summary>
+If true, all messages with the same region and message id are removed after OnStartInspection is called.
+</summary>
+            <remarks>
+                <p>Setting this property gives the effect only if it is done in method OnStartInspection.</p>
+                <p>By default this value is <c>false</c></p>.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.VerificationPermission">
+            <summary>
+The permission of a verification determines for what type of
+check the verification is enabled at most/ maximum.
+</summary>
+            <remarks>
+The permission should only initialized one-time (typically in
+the constructor in your verification class; default value is
+OnlineOfflinePermitted) and should not change during runtime.
+Supported permission values are:
+
+0=NoExecutionPermitted: Verifications with
+"NoExecutionPermitted" are no 'real' verifications
+These so called "dummy verifications" are only used
+to delete simple project messages before an offline check run
+starts.
+
+1=OfflineOnlyPermitted: Verification with this permission
+will only be executed in an offline check run. This
+verification is not allowed to be executed in online- state.
+Use this permission if your verification is very complex.
+
+2=OnlineOfflinePermitted: If you choose this permission the
+verification will be executed in online- as well as in
+offline- mode. To avoid performance problems the verification
+should be fast. OnlineOfflinePermitted is the default.
+
+3=RestrictivePermitted: Verifications with this permission
+will be executed in online- as well as in offline-mode(so the
+verification should be fast). In the online state a dialog
+will be shown and the change, that generated the project
+message will be canceled. In the offline state the
+verification will be executed but without the undo. 
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.VerificationState">
+            <summary>
+The VerificationState determines the actual adjusted check
+type whereas the permission determines what state is
+theoretically allowed at most.
+</summary>
+            <remarks>
+The state must comply to the permission: only weaker states
+can be set dynamically. The state is normally set from scheme
+settings (by the scheme dialog, for instance). supported
+state values are:
+
+0=NoExecutionState: The verification will be not executed in
+the next offline check run (certainly not in online mode).
+
+1=OfflineOnlyState: The verification will be executed in an
+offline check run but not online.
+
+2=OnlineOfflineState: The verification will be executed in an
+offline check run as well as online. "Online"
+means, that every time an undo step opens (an object is
+changed, a new object is inserted or an object is deleted),
+the verification will be executed. OnlineOfflineState is the
+default.
+
+3=RestrictiveState: The verification will be executed in an
+offline check run as well as online. Additionally in online
+mode and if the verification announces an error, the last
+change will be canceled. This state can only be set if the
+permission of the verification was initialized with
+RestrictivePermitted. 
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.MessageId">
+            <summary>
+The ID of the message. Is automatically set. 
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.Verification.Region">
+            <summary>
+The region associated with the message. Is automatically set. 
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject,Eplan.EplApi.DataModel.StorableObject,System.String)">
+            <summary>
+Service function for the error output during a test.
+Text to display is taken from correct IMessage::GetMessageText method.
+</summary>
+            <param name="oFirstObject">
+The error refers to this object. 
+</param>
+            <param name="oSecondObject">
+Another object that caused the error. 
+</param>
+            <param name="strTextParameter">
+Parameter values for the message text. This value is used only with messages that use %1!s! variable in their definition.
+</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>oFirstObject</c>
+                                              is invalid or
+                                              NULL.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject,System.String)">
+            <summary>
+Service function for the error output during a test.
+Text to display is taken from correct IMessage::GetMessageText method.
+</summary>
+            <param name="oObject">
+The error refers to this object. 
+</param>
+            <param name="strTextParameter">
+Parameter values for the message text. This value is used only with messages that use %1!s! variable in their definition.
+</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>oObject</c>
+                                              is invalid or
+                                              NULL.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.Verification.DoErrorMessage(Eplan.EplApi.DataModel.StorableObject)">
+            <summary>
+Service function for the error output during a test.
+Text to display is taken from correct IMessage::GetMessageText method.
+</summary>
+            <param name="oObject">
+The error refers to this object. 
+</param>
+            <exception cref="T:System.ArgumentException">Thrown when <c>oObject</c>
+                                              is invalid or
+                                              NULL.</exception>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.Verification">
+            <summary>
+Base class for specific test classes.
+</summary>
+            <seealso cref="!:Verifications" />
+        </member>
+        <member name="M:Eplan.EplApi.EServices.IVerification.Execute(Eplan.EplApi.DataModel.StorableObject)">
+            <summary>
+Called by EPLAN when a specific object is to be checked.
+Implements the "check." 
+</summary>
+            <param name="oObject1">
+This object is to be checked. 
+</param>
+            <example>
+The following example shows a method to prevent creating rectangle on page with plant "ETH".
+This is an example of verification with type - prevent. The error message will not be added into message dialog
+but message box will be displayed and creation of rectangle will be automatically canceled.
+<code lang="C#">
+public override void Execute(Eplan.EplApi.MasterData.MDPartsDatabaseItem oItem)
+{
+    if (this.VerificationState == IVerification.VerificationState.RestrictiveState)
+    {
+        Rectangle oRectangle = oObject as Rectangle;
+        if (oRectangle != null)
+        {
+            if (oRectangle.Page != null)
+            {
+                if (oRectangle.Page.Properties.DESIGNATION_FULLPLANT == "ETH")
+                {
+                    DoErrorMessage(oRectangle, oRectangle.Page.Name);
+                }
+            }
+        }
+    }
+}
+</code></example>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.IVerification">
+            <summary>
+Interface declaration for an electrotechnical check in EPLAN.
+If an add-in wants to add an undefined check to EPLAN projects 
+this interface must be implemented by a class of the add-in.
+</summary>
+            <seealso cref="!:Verifications" />
+        </member>
+        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnEndInspection">
+            <summary>
+Called by EPLAN when a check routine has been completed. 
+</summary>
+            <remarks>
+Note: OnStartInspection/OnEndInspection methods are called for each verification registered in the system
+when the check routine starts/ends regardless of type of the check (online/offline) 
+and regardless of the verification's category filter.
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnStartInspection(System.Boolean)">
+            <summary>
+Called by EPLAN when a check routine starts in the system. 
+</summary>
+            <param name="bOnline">
+True: An online check is made.
+False: An offline check is made.
+</param>
+            <remarks>
+Note: OnStartInspection/OnEndInspection methods are called for each verification registered in the system
+when the check routine starts/ends regardless of type of the check (online/offline) 
+and regardless of the verification's category filter.
+</remarks>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.IVerificationBase.OnRegister(System.String@,System.Int32@)">
+            <summary>
+Called by EPLAN when the new check is added to the system.
+</summary>
+            <remarks>
+It is not allowed to override the functionality of an
+existing check. Only the message text can be changed as
+described in <see text="Eplan.EplApi.EServices.IMessage.OnRegister" cref="M:Eplan.EplApi.EServices.IMessage.OnRegister(System.String@,Eplan.EplApi.EServices.IMessage.Region@,System.Int32@,Eplan.EplApi.EServices.IMessage.Classification@,System.Int32@)" /></remarks>
+            <param name="strName">The new check is saved with this name
+                      in the system. </param>
+            <param name="iOrdinal">Overload level for the new check. </param>
+            <remarks>
+It is not possible to overwrite an existing verification. The
+overload level is just needed for registration purposes.
+</remarks>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.IVerificationBase.VerificationState">
+            <summary>
+The VerificationState determines the actual adjusted check
+type whereas the permission determines what state is
+theoretically allowed at most.
+</summary>
+            <remarks>
+The state must comply to the permission: only weaker states
+can be set dynamically. The state is normally set from scheme
+settings (by the scheme dialog, for instance). Supported
+state values are:
+
+0=NoExecutionState: The verification will be not executed in
+the next offline check run (certainly not in online mode).
+
+1=OfflineOnlyState: The verification will be executed in an
+offline check run but not online.
+
+2=OnlineOfflineState: The verification will be executed in an
+offline check run as well as online. "Online"
+means, that every time an undo step opens (an object is
+changed, a new object is inserted or an object is deleted),
+the verification will be executed. OnlineOfflineState is the
+default.
+
+3=RestrictiveState: The verification will be executed in an
+offline check run as well as online. Additionally in online
+mode and if the verification announces an error, the last
+change will be canceled. This state can only be set if the
+permission of the verification was initialized with
+RestrictivePermitted. 
+</remarks>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.IVerificationBase.Permission">
+            <summary>
+The permission of a verification determines for what type of
+check the verification is enabled at most/ maximum.
+</summary>
+            <remarks>
+The permission should only initialized one-time (typically in
+the constructor in your verification class; default value is
+OnlineOfflinePermitted) and should not change during runtime.
+Supported permission values are:
+
+0=NoExecutionPermitted: Verifications with
+"NoExecutionPermitted" are no 'real' verifications
+These so called "dummy verifications" are only used
+to delete simple project messages before an offline check run
+starts.
+
+1=OfflineOnlyPermitted: Verification with this permission
+will only be executed in an offline check run. This
+verification is not allowed to be executed in online- state.
+Use this permission if your verification is very complex.
+
+2=OnlineOfflinePermitted: If you choose this permission the
+verification will be executed in online- as well as in
+offline- mode. To avoid performance problems the verification
+should be fast. OnlineOfflinePermitted is the default.
+
+3=RestrictivePermitted: Verifications with this permission
+will be executed in online- as well as in offline-mode(so the
+verification should be fast). In the online state a dialog
+will be shown and the change, that generated the project
+message will be canceled. In the offline state the
+verification will be executed but without the undo. 
+</remarks>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.IVerificationBase">
+            <summary>
+Base interface declaration for a check in EPLAN.
+If an add-in wants to add an undefined check to EPLAN projects 
+please implement interface IVerification or IPartVerification.
+</summary>
+            <seealso cref="!:Verifications" />
+        </member>
         <member name="M:Eplan.EplApi.EServices.IMessage.DoHelp">
             <summary>
 Called by EPLAN when the help text to the message should be shown.
@@ -3028,16 +2925,16 @@ change the messge text, but not the classification etc.
 </remarks>
         </member>
         <member name="F:Eplan.EplApi.EServices.IMessage.ProjectMessageCreationType.Explicit">
-            <summary>message was output via another module and thus created "outside" of the message management (e.g., in the case of automatic cable generation, or when addressing PLC inputs and /or outputs). These module-specific messages are displayed together with the "normal" project check messages in the message management dialog</summary>
+            <summary>Message was output via another module and thus created "outside" of the message management (e.g., in the case of automatic cable generation, or when addressing PLC inputs and /or outputs). These module-specific messages are displayed together with the "normal" project check messages in the message management dialog</summary>
         </member>
         <member name="F:Eplan.EplApi.EServices.IMessage.ProjectMessageCreationType.Offline">
-            <summary>message was output during a project check (menu items Project data &gt; Messages &gt; Check project)</summary>
+            <summary>Message was output during project checking. In could be either GUI dialog 'Check project', API action 'check' or Check.VertifyProject method.</summary>
         </member>
         <member name="F:Eplan.EplApi.EServices.IMessage.ProjectMessageCreationType.Online">
-            <summary>message was generated directly during the planning</summary>
+            <summary>Message was generated implicitly during project edition</summary>
         </member>
         <member name="F:Eplan.EplApi.EServices.IMessage.ProjectMessageCreationType.Undefined">
-            <summary>available for older projects that did not have the types of check available at the time, or for the ones which no current project check has yet been performed</summary>
+            <summary>Available for older projects that did not have the types of check available at the time, or for the ones which no current project check has yet been performed</summary>
         </member>
         <member name="T:Eplan.EplApi.EServices.IMessage.ProjectMessageCreationType">
             <summary>
@@ -3051,36 +2948,6 @@ message must be assigned to one of these classifications, other values
 will not be supported. The classification of a project message 
 could be changed in the settings dialog at run time.
 </summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Planning">
-            <summary>Planning</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Cabling">
-            <summary>Cabling</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.MountingPanel3D">
-            <summary>Mountingpanel 3D</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Standard">
-            <summary>Standard deprecated</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Evaluations">
-            <summary>Evaluations</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Exports">
-            <summary>Exports</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Imports">
-            <summary>Imports</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.MountingPanels">
-            <summary>Mounting panels</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.Xrefs">
-            <summary>Cross references</summary>
-        </member>
-        <member name="F:Eplan.EplApi.EServices.IMessage.Region.SPS">
-            <summary>PLC</summary>
         </member>
         <member name="F:Eplan.EplApi.EServices.IMessage.Region.Externals">
             <summary>999 External</summary>
@@ -3188,54 +3055,174 @@ will not be supported
         <member name="T:Eplan.EplApi.EServices.IMessage">
             <summary>
 Interface declaration for an electrotechnical message in EPLAN.
-If an add-in wants to add an undefined project message to EPLAN projects 
-this interface must be implemented by a class of the add-in.
+If an add-in wants to add an undefined project message to EPLAN projects,
+then the class of the add-in must inherit from the Eplan.EplApi.EServices.Message class.
 </summary>
         </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.InsertedItems">
-            <summary>
-Returns placements inserted by interaction.
-</summary>
-            <remarks>
-For overriden interactions this property should be set by interaction itself.
-For other - custom interactions, this property is availabe to be set manually.
-</remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.InsertedPlacements">
-            <summary>
-Returns placements inserted by the base interaction.
-</summary>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.IsSelectionInteraction">
-            <summary>
-Returns true, if interaction is a helper interaction to select placements.
-</summary>
-            <remarks>By default it returns <c>false</c></remarks>
-        </member>
-        <member name="P:Eplan.EplApi.EServices.Ged.InsertInteraction.IsInsertInteraction">
-            <summary>
-Returns true, if interaction is used to insert one ore more placements on page.
-</summary>
-            <remarks>By default it returns <c>true</c></remarks>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.Finalize">
-            <summary>
-Non-deterministic Finalizer of InsertInteraction object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.Dispose">
-            <summary>
-Destructor for deterministic finalization of InsertInteraction object.
-</summary>
-        </member>
-        <member name="M:Eplan.EplApi.EServices.Ged.InsertInteraction.#ctor">
+        <member name="M:Eplan.EplApi.EServices.SubProject.#ctor">
             <summary> 
 Default constructor.
 </summary>
         </member>
-        <member name="T:Eplan.EplApi.EServices.Ged.InsertInteraction">
+        <member name="P:Eplan.EplApi.EServices.SubProject.IsStorePossible">
+            <summary>
+Returns <c>true</c> if project exported from this subproject can be inserted back to project.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.IsFileOffPossible">
+            <summary>
+Returns <c>true</c> if subproject represened by this object can be exported.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.Project">
+            <summary>
+Project for which  the subproject is defined.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.Number">
+            <summary>
+Subproject number.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.SchemeName">
+            <summary>
+Name of the associated defined working section for the this subproject.
+</summary>
+            <remarks>
+This name can be used for reading, importing or exporting scheme for/to project settings.
+</remarks>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.Status">
+            <summary>
+Status of this subproject.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.Description">
+            <summary>
+Description of the associated defined working section for the this subproject.
+</summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if project of this subproject becames invalid and it is not possible to continue.</exception>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProject.Name">
+            <summary>
+Displayed scheme name of the associated defined working section for the this subproject.
+</summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if project of this subproject becames invalid and it is not possible to continue.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProject.Finalize">
+            <summary>
+Non-deterministic Finalizer of SubProject object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProject.Dispose">
+            <summary>
+Destructor for deterministic finalization of SubProject object.
+</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.Revisioned">
+            <summary>Project is revisioned.</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectNotEditable">
+            <summary>The subproject is not an editable project (*.elk), it cannot be filed off.</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectFiledOff">
+            <summary>Subproject is filed off. (Exported)</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.SubProjectStored">
+            <summary>Subproject is stored. (Imported)</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.WorkingSectionOverlaps">
+            <summary>Defined working section overlaps - parts of this defined working section are also contained in other defined working sections. Filing off is not possible.</summary>
+        </member>
+        <member name="F:Eplan.EplApi.EServices.SubProject.SubProjectStatus.Unknown">
+            <summary>Status is unknown.</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.SubProject.SubProjectStatus">
+            <summary>
+Possible statuses of subproject.
+</summary>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.SubProject">
             <summary> 
-Base class for specific interactions that inserts objects.
+Represents subproject specified by the defined working sections.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Update(Eplan.EplApi.EServices.SubProject)">
+            <summary>
+Updates project from subproject.
+</summary>
+            <example>
+                <code description="Example of updating a master project with content of subproject" lang="cs" source="P8_API_Example_EServices_SubProjectsCollection_Update.cs.txt" />
+            </example>
+            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and update is not possible.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Store(Eplan.EplApi.EServices.SubProject)">
+            <summary>
+Inserts filed-off subproject back into the project.
+</summary>
+            <remarks>
+Subproject can be imported only if SubProject.IsStorePossible is <c>true</c>.
+</remarks>
+            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and import is not possible.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.FileOff(Eplan.EplApi.EServices.SubProject)">
+            <summary>
+Creates subproject, i.e. file it off from the project.
+</summary>
+            <remarks>
+Subproject can be exported only if SubProject.IsFileOffPossible is <c>true</c>.
+After calling this method source Project object becomes invalid. Valid Project object can be obtained using ProjectManager::CurrentProject or ProjectManager::OpenedProjects property.
+</remarks>
+            <exception cref="T:System.InvalidOperationException">Thrown if subproject is in incorrect state and export is not possible.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when parameter is null.</exception>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Count">
+            <summary>
+Returns number of sub projects.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Project">
+            <summary>
+Gets the project.
+</summary>
+        </member>
+        <member name="P:Eplan.EplApi.EServices.SubProjectsCollection.Item(System.Int32)">
+            <summary>
+Gets the element at the specified index.
+</summary>
+            <exception cref="T:System.IndexOutOfRangeException">The exception that is thrown when an attempt is made to access an element of an array with an index that is outside the bounds of the array.</exception>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.GetEnumerator">
+            <summary>
+Returns an enumerator that can iterate through a collection.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.GetEnumerator2">
+            <summary>
+Returns an enumerator that can iterate through a collection.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Finalize">
+            <summary>
+Non-deterministic Finalizer of SubProjectsCollection object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.Dispose">
+            <summary>
+Destructor for deterministic finalization of SubProjectsCollection object.
+</summary>
+        </member>
+        <member name="M:Eplan.EplApi.EServices.SubProjectsCollection.#ctor(Eplan.EplApi.DataModel.Project)">
+            <summary> 
+Default constructor.
+</summary>
+            <param name="pProject">Source project for subprojects.</param>
+        </member>
+        <member name="T:Eplan.EplApi.EServices.SubProjectsCollection">
+            <summary> 
+Represents collection of subprojects specified by the defined working sections that are possible for given project.
 </summary>
         </member>
         <member name="M:Eplan.EplApi.EServices.Ged.Interaction.SetSelection(Eplan.EplApi.DataModel.StorableObject[])">
@@ -3383,7 +3370,7 @@ Returns <c>true</c>, if interaction is used to insert one ore more placements on
         </member>
         <member name="M:Eplan.EplApi.EServices.Ged.Interaction.IsEnabled(System.String,Eplan.EplApi.ApplicationFramework.ActionCallingContext)">
             <summary>
-Returns true, if interaction should be enabled in menu
+Returns true, if interaction should be enabled in ribbon
 </summary>
         </member>
         <member name="P:Eplan.EplApi.EServices.Ged.Interaction.IsReadOnly">
@@ -3547,6 +3534,7 @@ Returns true, if logical placements were changed.
             <summary>
 Is called after abort of interaction.
 </summary>
+            <remarks>This occurs for example in case of switching a page or pressing 'Escape' key.</remarks>
         </member>
         <member name="M:Eplan.EplApi.EServices.Ged.Interaction.OnPageChange">
             <summary>
@@ -3941,7 +3929,7 @@ Copy constructor.
         </member>
         <member name="T:Eplan.EplApi.EServices.Ged.InteractionEvent">
             <summary> 
-This class is used to passed informations about event which has occurred.
+This class is used to pass information about the event that has occurred.
 </summary>
         </member>
         <member name="M:Eplan.EplApi.EServices.Ged.SelectionContext.#ctor(XGedSelectionContext)">
@@ -4183,22 +4171,21 @@ The class should be used only by Interaction methods. It cannot be used in a nor
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.NoPreselect'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.NoPreselect'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
-        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem)'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem,System.String)'. -->
+        <!-- Discarding badly formed XML document comment for member 'P:Eplan.EplApi.EServices.PartVerification.VerificationPermission'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem)'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem,System.String)'. -->
         <!-- Discarding badly formed XML document comment for member 'P:Eplan.EplApi.EServices.PartVerification.VerificationPermission'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.BaseProjectMessage.#ctor(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.String)'. -->
-        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.BaseProjectMessage.#ctor(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.String)'. -->
-        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem)'. -->
-        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem,System.String)'. -->
-        <!-- Discarding badly formed XML document comment for member 'P:Eplan.EplApi.EServices.PartVerification.VerificationPermission'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.NoPreselect'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.NoPreselect'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
+        <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.BaseProjectMessage.#ctor(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.String)'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem)'. -->
         <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.PartVerification.DoErrorMessage(Eplan.EplApi.MasterData.MDPartsDatabaseItem,System.String)'. -->
@@ -4211,5 +4198,6 @@ The class should be used only by Interaction methods. It cannot be used in a nor
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.Restart'. -->
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.AutoConnection'. -->
         <!-- Discarding badly formed XML document comment for member 'F:Eplan.EplApi.EServices.Ged.RequestCode.IgnoreGroup'. -->
+        <!-- Discarding badly formed XML document comment for member 'M:Eplan.EplApi.EServices.BaseProjectMessage.#ctor(Eplan.EplApi.EServices.IMessage.Region,System.Int32,System.String,System.String,System.String,System.String)'. -->
     </members>
 </doc>

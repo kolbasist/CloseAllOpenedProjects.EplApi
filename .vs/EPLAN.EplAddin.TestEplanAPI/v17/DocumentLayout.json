@@ -3,27 +3,35 @@
   "WorkspaceRootPath": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\timersmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:timersmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\dialogcloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:dialogcloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\windowlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:windowlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|d:\\users\\\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\testeplanapi\\addinmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:addinmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|EPLAN.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\addinmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|EPLAN.EplAddin.TestEplanAPI.csproj|solutionrelative:addinmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\projectcloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:projectcloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\guicloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:guicloser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\timersmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB1B91FC-6A39-4577-986B-988E5C65C351}|CENTEC.EplAddin.TestEplanAPI.csproj|solutionrelative:timersmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +41,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -43,10 +51,11 @@
               "RelativeDocumentMoniker": "ProjectCloser.cs",
               "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\ProjectCloser.cs",
               "RelativeToolTip": "ProjectCloser.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAAAAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-03T06:40:45.948Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -58,65 +67,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Exchanger (1).cs",
-              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\Exchanger (1).cs",
-              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs",
-              "RelativeToolTip": "..\\..\\..\\Downloads\\Exchanger (1).cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAAAKgAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T04:48:58.662Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GUICloser.cs",
-              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\GUICloser.cs",
-              "RelativeDocumentMoniker": "GUICloser.cs",
-              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\GUICloser.cs",
-              "RelativeToolTip": "GUICloser.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T06:44:57.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddInModule.cs",
-              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\AddInModule.cs",
-              "RelativeDocumentMoniker": "AddInModule.cs",
-              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\AddInModule.cs",
-              "RelativeToolTip": "AddInModule.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T16:09:30.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TimersManager.cs",
-              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\TimersManager.cs",
-              "RelativeDocumentMoniker": "TimersManager.cs",
-              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\TimersManager.cs",
-              "RelativeToolTip": "TimersManager.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACUAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T16:09:06.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AddInModule.cs",
               "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\AddInModule.cs",
               "RelativeDocumentMoniker": "AddInModule.cs",
               "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\AddInModule.cs",
               "RelativeToolTip": "AddInModule.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAACQAAAB0AAAA",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-29T17:29:10.443Z"
+              "WhenOpened": "2024-11-28T05:06:07.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Exchanger (1).cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Downloads\\Exchanger (1).cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\Downloads\\Exchanger (1).cs",
+              "RelativeToolTip": "..\\..\\..\\Downloads\\Exchanger (1).cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-02T04:48:58.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WindowLogger.cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\WindowLogger.cs",
+              "RelativeDocumentMoniker": "WindowLogger.cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\WindowLogger.cs",
+              "RelativeToolTip": "WindowLogger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-16T06:38:09.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\Logger.cs",
+              "RelativeDocumentMoniker": "Logger.cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\Logger.cs",
+              "RelativeToolTip": "Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T18:20:11.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DialogCloser.cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\DialogCloser.cs",
+              "RelativeDocumentMoniker": "DialogCloser.cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\DialogCloser.cs",
+              "RelativeToolTip": "DialogCloser.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAmwJkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T17:31:46.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GUICloser.cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\GUICloser.cs",
+              "RelativeDocumentMoniker": "GUICloser.cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\GUICloser.cs",
+              "RelativeToolTip": "GUICloser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-01T06:44:57.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TimersManager.cs",
+              "DocumentMoniker": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\TimersManager.cs",
+              "RelativeDocumentMoniker": "TimersManager.cs",
+              "ToolTip": "D:\\Users\\\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C\\source\\repos\\TestEplanAPI\\TimersManager.cs",
+              "RelativeToolTip": "TimersManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-01T16:09:06.012Z",
+              "EditorCaption": ""
             }
           ]
         }

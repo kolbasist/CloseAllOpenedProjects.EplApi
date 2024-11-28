@@ -1,9 +1,6 @@
-﻿using Eplan.EplApi.ApplicationFramework;
-using Eplan.EplApi.Base;
-using Eplan.EplApi.EServices;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
-using System.Timers;
+using System.Windows.Forms; // Добавлено
 using CENTEC.EplAPI.Service;
 
 namespace CENTEC.EplAddin.TestEplanAPI
@@ -19,52 +16,50 @@ namespace CENTEC.EplAddin.TestEplanAPI
         {
             SystemEvents.SessionSwitch += SessionSwitched;
 
-            StartInitialTimer();
-
-            _initialTimer.Elapsed += StartDailyTimer;
-            _initialTimer.Elapsed += StopInitialTimer;
-
             _projectCloser = new ProjectCloser();
+
+            StartInitialTimer(false);
         }
 
         private void SessionSwitched(object sender, SessionSwitchEventArgs e)
         {
-            Logger.SendMSGToEplanLog("[TimerManager.SesseionSwitched] Invoked");
+            Logger.SendMSGToEplanLog("[TimerManager.SessionSwitched] Invoked");
 
             if (e.Reason == SessionSwitchReason.SessionLock)
             {
-                Logger.SendMSGToEplanLog("[TimerManager.SesseionSwitched] Screen Locked");
+                Logger.SendMSGToEplanLog("[TimerManager.SessionSwitched] Screen Locked");
                 _lockTimer = new Timer();
-                StartTimer(_lockTimer, TimeSpan.FromMinutes(15).TotalMilliseconds, false, "Lock Timer");
+                StartTimer(_lockTimer, (int)TimeSpan.FromMinutes(15).TotalMilliseconds, false, "Lock Timer");
             }
-
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
-                _lockTimer.Dispose();
-                _lockTimer.Stop();
+                if (_lockTimer != null)
+                {
+                    _lockTimer.Stop();
+                    _lockTimer.Dispose();
+                    _lockTimer = null;
+                }
             }
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void TimerElapsed(object sender, EventArgs e)
         {
             _projectCloser.CloseAll();
             Logger.SendMSGToEplanLog($"[ClosingManager.TimerElapsed] Event was invoked at {DateTime.Now}");
         }
 
-        private void StartDailyTimer(object sender, ElapsedEventArgs e)
+        private void StartDailyTimer(object sender, EventArgs e)
         {
             _dailyTimer = new Timer();
-            StartTimer(_dailyTimer, TimeSpan.FromHours(24).TotalMilliseconds, true, "Daily Timer");
+            StartTimer(_dailyTimer, (int)TimeSpan.FromHours(24).TotalMilliseconds, true, "Daily Timer");
         }
 
-        private void StartTimer(Timer timer, double interval, bool isAutoresetRequired, string timerName)
+        private void StartTimer(Timer timer, int interval, bool isAutoresetRequired, string timerName)
         {
-            timer.Close();
-            timer.AutoReset = isAutoresetRequired;
             timer.Interval = interval;
+            timer.Tick += TimerElapsed;
             timer.Start();
-            timer.Elapsed += TimerElapsed;
-            Logger.SendMSGToEplanLog($"[ClosingManager.StartTimer] {timerName} has succesfully will go of at {DateTime.Now.AddMilliseconds(interval)}.");
+            Logger.SendMSGToEplanLog($"[ClosingManager.StartTimer] {timerName} will go off at {DateTime.Now.AddMilliseconds(interval)}.");
         }
 
         private void StartInitialTimer(bool isDebugging = false)
@@ -82,20 +77,28 @@ namespace CENTEC.EplAddin.TestEplanAPI
                     nextRunTime = nextRunTime.AddDays(1);
                 }
 
-                double interval = (nextRunTime - now).TotalMilliseconds;
-                StartTimer(_initialTimer, interval, false, "initial Timer");
+                int interval = (int)(nextRunTime - now).TotalMilliseconds;
+                StartTimer(_initialTimer, interval, false, "Initial Timer");
             }
             else
             {
-                StartTimer(_initialTimer, TimeSpan.FromMinutes(2).TotalMilliseconds, false, "Initial Timer");
+                StartTimer(_initialTimer, (int)TimeSpan.FromMinutes(2).TotalMilliseconds, false, "Initial Timer");
             }
+
+            _initialTimer.Tick += StartDailyTimer;
+            _initialTimer.Tick += StopInitialTimer;
         }
 
-        private void StopInitialTimer(object sender, ElapsedEventArgs e)
+        private void StopInitialTimer(object sender, EventArgs e)
         {
-            _initialTimer.Stop();
-            _initialTimer.Elapsed -= StopInitialTimer;
-            Logger.SendMSGToEplanLog("Initial Timer disposed.");
+            if (_initialTimer != null)
+            {
+                _initialTimer.Stop();
+                _initialTimer.Tick -= StopInitialTimer;
+                Logger.SendMSGToEplanLog("Initial Timer disposed.");
+                _initialTimer.Dispose();
+                _initialTimer = null;
+            }
         }
     }
 }

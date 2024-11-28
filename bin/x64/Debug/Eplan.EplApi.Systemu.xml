@@ -259,7 +259,9 @@ Initializes the EPLAN runtime system.
 </summary>
             <remarks> Off-line applications require to be Single-Threaded because of COM which are used by P8.
          Therefore, for example Main() function has to be declared with attribute [STAThread].
-         Please see MSDN or Google for more information about STAThread.
+         Please see MSDN or Google for more information about STAThread. Calling this method changes
+		 the current culture (default format for dates, times and numbers) used by the thread to the culture 
+		 in the GUI.
 </remarks>
             <param name="strApplicationModifier">
 This parameter specifies which configuration is to be initialized.
@@ -278,7 +280,9 @@ Initializes the EPLAN runtime system.
 </summary>
             <remarks> Off-line applications require to be Single-Threaded because of COM which are used by P8.
          Therefore, for example Main() function has to be declared with attribute [STAThread].
-         Please see MSDN or Google for more information about STAThread.
+         Please see MSDN or Google for more information about STAThread. Calling this method changes
+		 the current culture (default format for dates, times and numbers) used by the thread to the culture 
+		 in the GUI.
 </remarks>
             <param name="strApplicationModifier">
 This parameter specifies which configuration is to be initialized.
@@ -294,7 +298,9 @@ Initializes the EPLAN runtime system.
 </summary>
             <remarks> Off-line applications require to be Single-Threaded because of COM which are used by P8.
          Therefore, for example Main() function has to be declared with attribute [STAThread].
-         Please see MSDN or Google for more information about STAThread.
+         Please see MSDN or Google for more information about STAThread. Calling this method changes
+		 the current culture (default format for dates, times and numbers) used by the thread to the culture 
+		 in the GUI.
 </remarks>
             <param name="strApplicationModifier">
 This parameter specifies which configuration is to be initialized.
@@ -422,6 +428,7 @@ function.
             <example>
 This example initializes and closes EPLAN.
 <code lang="cs" source="P8_API_Example_System_EplApplication_Init_Example1.cs.txt" /></example>
+            <seealso cref="!:UsingEplanAssemblies.html" />
         </member>
         <member name="M:Eplan.EplApi.SystemBase.EplApplicationMFCApp.DestroyMainWnd">
             <summary>
@@ -453,18 +460,75 @@ Destructor for deterministic finalization of Progress object.
 For internal use only.
 </summary>
         </member>
-        <member name="F:Aflicense.m_bIsLicensingAvailable">
-is licensing is available
+        <member name="M:MfRibbonBar.LoadFromBuffer(System.Char!System.Runtime.CompilerServices.IsConst*)">
+Use this method to load a Ribbon Bar from a memory buffer containing XML definition of the Ribbon Bar schema. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the XML.
 </member>
-        <member name="M:Aflicense.isLicensingAvailable">
+        <member name="M:MfRibbonBar.LoadFromVSRibbon(System.Char!System.Runtime.CompilerServices.IsConst*)">
+Use this method to import a Ribbon Bar schema from VS 2010/2012 resource file. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the VS resources.
+</member>
+        <member name="M:MfRibbonBar.LoadFromXML(System.Char!System.Runtime.CompilerServices.IsConst*)">
+Use this method to load a Ribbon Bar schema from XML. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the XML.
+</member>
+        <member name="M:AfLc.isLicensingAvailable">
 Checks if licensing is available
 </member>
-        <member name="F:AfApplication.sm_Application">
+        <member name="F:AfLcData.m_bIsLicensingAvailable">
+is licensing is available
+</member>
+        <member name="F:AfApplication.m_bIdentityClientInitialized">
 ************************************************************************
 ************************************************************************
 </member>
-        <member name="T:EUnicodeConverter">
-EUnicodeConverter.h
+        <member name="M:AfApplication.signout">
+Internal methods
+Following methods are intended to be called ONLY by the Platform Framework or Unit tests
+</member>
+        <member name="M:IEIdentityClientService.signout">
+Signs out user
+</member>
+        <member name="M:IEIdentityClientService.startAuthentication">
+Internal methods
+Following methods are intended to be called ONLY by the Platform Framework or Unit tests
+</member>
+        <member name="M:IEIdentityClientService.getAccessToken(EString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,EString*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Gets AccessToken for a ClientId
+</member>
+        <member name="M:IEIdentityClientService.registerClientId(EString!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Registers ClientId
+</member>
+        <member name="M:IEIdentityClientService.getConsentForUX">
+Gets consent for the user experience program
+</member>
+        <member name="M:IEIdentityClientService.getUserProfile(EPulseUserProfile*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Gets user profile
+</member>
+        <member name="M:IEIdentityClientService.getSkipSigninFlag">
+Gets skip sign in flag
+</member>
+        <member name="M:IEIdentityClientService.setSkipSigninFlag(System.Boolean)">
+Sets skip sign in flag
+</member>
+        <member name="M:IEIdentityClientService.isUserAuthenticated">
+Checks if user is authenticated
+</member>
+        <member name="M:IEIdentityClientService.getSignedoutFlag">
+Gets Signed out flag
+</member>
+        <member name="M:IEIdentityClientService.setSignedoutFlag(System.Boolean)">
+Sets Signed out flag
+</member>
+        <member name="M:Gdiplus.Region.IsVisible(Gdiplus.PointF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,Gdiplus.Graphics!System.Runtime.CompilerServices.IsConst*)">
+Hit testing operations
+
+</member>
+        <member name="T:boost.mpl.less_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
+</member>
+        <member name="T:boost.mpl.times_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
+</member>
+        <member name="T:boost.mpl.equal_to_impl{boost.mpl.na,boost.mpl.na}">
+for Digital Mars C++/compilers with no CTPS/TTP support
 </member>
         <member name="M:op_BitwiseAnd(IEArchive*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,EColor*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
 global operator to write an EColor into an archive or to read it from
@@ -1142,514 +1206,311 @@ circle 2*PI
         <member name="F:AT_DEGREE">
 circle 360°
 </member>
-        <member name="M:CMFCControlRenderer.IsScaled">
-            <summary>
-Tells whether this control renderer works with scaled (resized) images.</summary>
-            <returns>Returns TRUE if this control renderer works with resized (scaled) images.</returns>
-        </member>
-        <member name="M:CMFCControlRenderer.SmoothResize(System.Double)">
-            <summary> 
-Smoothly resizes images.</summary>
-            <param name="dblScale"> Scale ratio.</param>
-            <returns> TRUE if resize succeeds; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CDrawingManager.CreateBitmap_32(HBITMAP__*,System.UInt32!System.Runtime.CompilerServices.IsLong)">
-            <summary> Creates a 32 bit bitmap from the specified bitmap.</summary>
-            <returns> A handle to created bitmap, or NULL, if creation fails.</returns>
-            <param name="bitmap"> A handle to the original bitmap.</param>
-            <param name="clrTransparent"> An RGB value specifying transparent color of the original bitmap.</param>
-        </member>
-        <member name="M:CDrawingManager.CreateBitmap_32(CSize!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Void**)">
-            <summary> Creates an empty 32 bit bitmap.</summary>
-            <returns> A handle to created bitmap, or NULL, if creation fails.</returns>
-            <param name="size">Specifies bitmap size.</param>
-            <param name="pBits">When the function returns contains a pointer to bitmap bits.</param>
-        </member>
-        <member name="M:CDrawingManager.DrawRotated(CRect,CDC*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Int32)">
-            <summary>
-Rotates a source DC content inside the given rectangle by +/- 90 degrees</summary>
-            <param name="rectDest">Destination rectangle</param>
-            <param name="dcSrc">The source device content.</param>
-            <param name="bClockWise">TRUE - rotate +90 degrees, FALSE - 90.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.SetTaskbarTabText(System.Char!System.Runtime.CompilerServices.IsConst*)">
-            <summary>
-Called internally by the framework to set text of taskbar tab.</summary>
-            <param name="lpcszDefaultText"> Specifies a text to set. Current implementation adds this text to application name if the MDI child has FWS_ADDTOTITLE style. </param>
-        </member>
-        <member name="M:CMDIChildWndEx.ActivateTopLevelFrame">
-            <summary>
-Called internally by the framework to activate top level frame when the application should be activated 
-from a taskbar tab.</summary>
-        </member>
-        <member name="M:CMDIChildWndEx.SetTaskbarThumbnailClipRect(CRect)">
-            <summary>
-Called internally by the framework to set clipping rectangle to select a portion of a window's client area to display 
-as that window's thumbnail in the taskbar.</summary>
-            <param name="rect">Specifies the new clipping rectangle. If rectangle is empty or null, the clipping is removed.</param>
-            <returns>Returns TRUE if the functions succeeds; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.GetTaskbarThumbnailClipRect">
-            <summary> 
-Called by the framework when it needs to select a portion of a window's client area to display 
-as that window's thumbnail in the taskbar.</summary>
-            <returns> A rectangle in windows coordinates. This rectangle will be mapped to the client area of top level frame. 
-The rectangle should be empty to clear the clipping rectangle</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.OnTaskbarTabThumbnailMouseActivate(CWnd*,System.UInt32,System.UInt32)">
-            <summary> 
-Called by the framework when the Taskbar tab thumbnail should process WM_MOUSEACTIVATE message.</summary>
-            <remarks>
-The default implementation activates related MDI child frame. </remarks>
-            <param name="pDesktopWnd">Specifies a pointer to the top-level parent window of the window being activated. The pointer may be temporary and should not be stored.</param>
-            <param name="nHitTest">Specifies the hit-test area code. A hit test is a test that determines the location of the cursor.</param>
-            <param name="message">Specifies the mouse message number.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.OnTaskbarTabThumbnailActivate(System.UInt32,CWnd*,System.Int32)">
-            <summary> 
-Called by the framework when the Taskbar tab thumbnail should process WM_ACTIVATE message.</summary>
-            <remarks>
-The default implementation activates related MDI child frame. </remarks>
-            <param name="nState">Specifies whether the CWnd is being activated or deactivated.</param>
-            <param name="pWndOther">Pointer to the CWnd being activated or deactivated. The pointer can be NULL, and it may be temporary.</param>
-            <param name="bMinimized">Specifies the minimized state of the CWnd being activated or deactivated. A value of TRUE indicates the window is minimized.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.OnPressTaskbarThmbnailCloseButton">
-            <summary> 
-Called by the framework when the user presses close button on Taskbar tab thumbnail..</summary>
-        </member>
-        <member name="M:CMDIChildWndEx.GetTaskbarPreviewWnd">
-            <summary> 
-Called by the framework when it needs to obtain a child window (usually a view or splitter window) to be displayed on Windows 7 taskbar tab thumbnail.</summary>
-            <returns>
-Should return a valid pointer to a CWnd object, whose preview should be displayed on 
-Windows 7 taskbar tab related to this MDI child. The default implementation returns
-a child window of this MDI child with AFX_IDW_PANE_FIRST control ID (which is usually a CView-derived class).</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.OnTaskbarTabThumbnailStretch(HBITMAP__*,CRect!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,HBITMAP__*,CRect!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary> 
-Called by the framework when it needs to stretch a bitmap for Windows 7 taskbar tab thumbnail preview of MDI child.</summary>
-            <returns>Should return TRUE if overridden and processed in a derived class.</returns>
-            <param name="hBmpDst">A handle to a destination bitmap.</param>
-            <param name="rectDst">Specifies the destination rectangle.</param>
-            <param name="hBmpSrc">A handle to a source bitmap.</param>
-            <param name="rectSrc">Specifies the source rectangle.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.OnGetIconicLivePreviewBitmap(System.Int32,CPoint*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary> 
-Called by the framework when it needs to obtain a bitmap for live preview of MDI child.</summary>
-            <returns> 
-If processed, should return a handle to a valid 32bpp bitmap, otherwise NULL.</returns>
-            <remarks>
-Override this method in a derived class an return a valid 32bpp bitmap for live preview of MDI child.
-This method is called only when MDI child is displayed on Windows 7 taskbar tabs.
-If you return NULL, MFC calls default handlers and obtains bitmaps using PrintClient or PrintWindow.</remarks>
-            <param name="bIsMDIChildActive"> This parameter is TRUE if the bitmap is requested for MDI child, which is currently active and the main window is not minimized. 
-The default processing in this case takes a snapshot of the main window.</param>
-            <param name="ptLocation"> Specifies the location of bitmap in the main (top level) window client coordinated. This point should be provided by callee.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.OnGetIconicThumbnail(System.Int32,System.Int32)">
-            <summary> 
-Called by the framework when it needs to obtain a bitmap for iconic thumbnail of MDI child.</summary>
-            <returns> 
-If processed, should return a handle to a valid 32bpp bitmap, otherwise NULL.</returns>
-            <remarks>
-Override this method in a derived class an return a valid 32bpp bitmap for iconic thumbnail of MDI child.
-This method is called only when MDI child is displayed on Windows 7 taskbar tabs.
-If you return NULL, MFC calls default handlers and obtains bitmaps using PrintClient.</remarks>
-            <param name="nWidth"> Specifies the width of required bitmap.</param>
-            <param name="nHeight"> Specifies the height of required bitmap.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.CanShowOnTaskBarTabs">
-            <summary> 
-Tells the framework whether this MDI child can be displayed on Windows 7 taskbar tabs.</summary>
-            <remarks>
-Override this method in a derived class and return FALSE to disable appearance of this MDI child
-on Windows 7 taskbar tabs.</remarks>
-            <returns>
-Should return TRUE if the content of MDI child can be displayed on Windows 7 taskbar thumbnails.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.UpdateTaskbarTabIcon(HICON__*)">
-            <summary>
-Updates Windows 7 taskbar tab icon.</summary>
-            <param name="hIcon"> A handle to an icon to display on Windows 7 taskbar tab.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.IsTaskbarThumbnailClipRectEnabled">
-            <summary> 
-Tells whether automatic selection of a portion of a window's client area to display 
-as that window's thumbnail in the taskbar is enabled or disabled. </summary>
-            <returns>
-Returns TRUE if automatic selection of a portion of a window's client area to display is enabled; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.EnableTaskbarThumbnailClipRect(System.Int32)">
-            <summary> 
-Enables or disables automatic selection of a portion of a window's client area to display 
-as that window's thumbnail in the taskbar. </summary>
-            <param name="bEnable"> Specifies whether to enable (TRUE), or disable (FALSE) automatic selection of a portion of a window's client area to display.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.GetTabProxyWnd">
-            <summary> 
-Returns tab proxy window actually registered with Windows 7 taskbar tabs.</summary>
-            <returns> A pointer to CMDITabProxyWnd object, which is registered with Windows 7 taskbar tabs.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.UnregisterTaskbarTab(System.Int32)">
-            <summary> 
-Removes MDI child from Windows 7 taskbar tabs.</summary>
-            <param name="bCheckRegisteredMDIChildCount">Specifies whether this function needs to check the number of MDI children registered with MDI tabs.
-If this number is 0, then this function removes clipping rectangle from application's taskbar thumbnail.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.SetTaskbarTabProperties(System.UInt32!System.Runtime.CompilerServices.IsLong)">
-            <summary>
-Sets properties for a Windows 7 taskbar tab.</summary>
-            <param name="dwFlags">A combination of STPFLAG values. See ITaskbarList4::SetTabProperties for details.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.SetTaskbarTabActive">
-            <summary>
-Activates corresponding Windows 7 taskbar tab.</summary>
-        </member>
-        <member name="M:CMDIChildWndEx.SetTaskbarTabOrder(CMDIChildWndEx*)">
-            <summary>
-Inserts MDI child before specified window on Windows 7 taskbar tabs.</summary>
-            <param name="pWndBefore">A pointer to MDI child window whose thumbnail is inserted to the left of. 
-This window must already be registered through RegisterTaskbarTab. If this value is NULL, the new thumbnail is added to the end of the list.</param>
-        </member>
-        <member name="M:CMDIChildWndEx.IsTaskbarTabsSupportEnabled">
-            <summary>
-Tells whether the MDI child can appear on Windows 7 taskbar tabs.</summary>
-            <remarks> Returns TRUE if MDI child can show on Windows 7 taskbar tabs.</remarks>
-            <returns> Returns TRUE if MDI child can show on Windows 7 taskbar tabs, 
-or FALSE if MDI child can't be shown on Windows 7 taskbar tabs.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.InvalidateIconicBitmaps">
-            <summary>
-Invalidates iconic bitmap representation of MDI child.</summary>
-            <remarks> Should be called when the live content or size of MDI child has changed</remarks>
-            <returns> Returns FALSE is Windows 7 taskbar support is disabled or the MDI child
-is not registered with Windows 7 taskbar tabs; otherwise returns TRUE.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.IsRegisteredWithTaskbarTabs">
-            <summary>
-Returns TRUE if MDI child was successfully registered with Windows 7 taskbar tabs.</summary>
-            <returns>
-TRUE if MDI child is registered with Windows 7 taskbar tabs; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMDIChildWndEx.RegisterTaskbarTab(CMDIChildWndEx*)">
-            <summary>
-Registers MDI child with Windows 7 taskbar tabs.</summary>
-            <param name="pWndBefore">A pointer to MDI child window whose thumbnail is inserted to the left of. 
-This window must already be registered through RegisterTaskbarTab. If this value is NULL, the new thumbnail is added to the end of the list.</param>
-        </member>
-        <member name="F:CMDIChildWndEx.m_dwDefaultTaskbarTabPropertyFlags">
-            <summary>
-A combination of flags, which is passed by the framework to the SetTaskbarTabProperties method,
-when a tab (MDI child) is being registered with Windows 7 taskbar tabs.
-The default combination is STPF_USEAPPTHUMBNAILWHENACTIVE | STPF_USEAPPPEEKWHENACTIVE.</summary>
-        </member>
-        <member name="M:CMDIClientAreaWnd.FindNextRegisteredWithTaskbarMDIChild(CMDIChildWndEx*)">
-            <summary>
-Finds a tabbed group containing the specified MDI child, then 
-goes over all MDI children starting from the found tab and returns first encountered MDI child registered with Windows 7 taskbar tabs.</summary>
-            <return>
-Returns a valid pointer to CMDIChildWndEx if registered child is found, or NULL.</return>
-            <param name="pOrgWnd">A valid pointer to an MDI child window, which specifies the starting window for search.</param>
-        </member>
-        <member name="M:CMDIClientAreaWnd.FindNextRegisteredWithTaskbarMDIChild(CMFCTabCtrl*,System.Int32)">
-            <summary>
-Goes over all MDI children starting from the specified tab and returns first encountered MDI child registered with Windows 7 taskbar tabs.</summary>
-            <return>
-Returns a valid pointer to CMDIChildWndEx if registered child is found, or NULL.</return>
-            <param name="pTabCtrl">A pointer to a tabbed window (tab control) where to look for registered MDI child. </param>
-            <param name="iStartFrom">Specifies the starting position for search within tab control.</param>
-        </member>
-        <member name="M:CMDIClientAreaWnd.SetTaskbarTabOrder">
-            <summary>
-Goes over all tabs and windows and sets proper tab order</summary>
-        </member>
-        <member name="M:CMDIClientAreaWnd.FindTabWndByChild(HWND__*,System.Int32*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-Finds tab control containing the specified window.</summary>
-            <return> 
-A valid pointer to tab control containing the specified window. 
-It's NULL if the specified window is not found.</return>
-            <param name="hWndChild">A handle to window, which is contained in the resulting tab control.</param>
-            <param name="iIndex">When the function returns it contains an index of hWndChild in tab control.</param>
-            <remarks>
-If window specified by hWndChild is found, iIndex contains index of this window in the tabbed group.</remarks>
-        </member>
-        <member name="M:CDockingManager.GetSmartDockingTheme">
-            <summary>
-A static method that returns a theme used to display smart docking markers.</summary>
-            <returns> 
-Returns one of the following enumerated values: AFX_SDT_DEFAULT, AFX_SDT_VS2005, AFX_SDT_VS2008.</returns>
-        </member>
-        <member name="M:CDockingManager.SetDockingMode(AFX_DOCK_TYPE,AFX_SMARTDOCK_THEME)">
-            <summary>
-Sets docking mode.</summary>
-            <param name="dockMode">Specifies a docking mode to set. It should be one of the following 
-enumerated values: DT_IMMEDIATE, DT_STANDARD or combination of DT_IMMEDIATE and DT_SMART.</param>
-            <param name="theme">Specifies the theme to be used for smart docking markers. It can be 
-one of the following enumerated values: AFX_SDT_DEFAULT, AFX_SDT_VS2005, AFX_SDT_VS2008.</param>
-        </member>
-        <member name="M:CMFCAutoHideButton.IsHighlighted">
-            <summary>
-Returns highlight state of auto hide button.</summary>
-            <returns> Returns TRUE if auto hide button is highlighted; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMFCAutoHideButton.HighlightButton(System.Int32)">
-            <summary>
-Highlights auto hide button.</summary>
-            <param name="bHighlight">Specifies the new auto hide button state: TRUE - button is highlighted, FALSE- button is not highlighted.</param>
-        </member>
-        <member name="M:CMFCToolBarSystemMenuButton.GetSysMenuIcon">
+        <member name="M:CBCGPToolbarSystemMenuButton.GetSysMenuIcon">
 Attributes:
 </member>
-        <member name="M:CMFCEditBrowseCtrl.OnIllegalFileName(ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+        <member name="M:CBCGPDialog.EnableLayout(System.Int32,CRuntimeClass*,System.Int32,System.Int32)">
             <summary>
-Called by the framework when an illegal file name was entered in the edit control.</summary>
-            <param name="strFileName">Specifies the illegal file name.</param>
-            <returns> Should return FALSE if this file name can't be passed further to the file dialog. In this case a focus set back to the edit control
-and the user should continue editing. The default implementation displays a message box telling the user about illegal file name and returns FALSE.
-You can override this method, correct the file name and return TRUE for further processing.</returns>
+Call this method to enable or disable layout management for a dialog box.
+If you specify a custom layout manager (pRTC), it must be derived from CBCGPControlsLayout or one of its descendants.</summary>
+            <param name="bEnable">TRUE - enable layout management, FALSE - disable layout management.</param>
+            <param name="pRTC">A pointer to a runtime class information of custom layout manager.</param>
+            <param name="bResizeBox">TRUE - display resize box; FALSE - don't display resize box.</param>
         </member>
-        <member name="M:CMFCRibbonFontComboBox.GetPitchAndFamily">
+        <member name="M:CBCGPDialog.HasAeroMargins">
+            <summary />
+        </member>
+        <member name="M:CBCGPDialog.GetAeroMargins(_BCGPMARGINS*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary />
+            <param name="margins" />
+        </member>
+        <member name="M:CBCGPDialog.EnableAero(_BCGPMARGINS*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
             <summary>
-Returns the pitch and the family of the fonts that are displayed in the combo box.</summary>
+This method has effect only under Windows Vista with the Aero theme enabled.
+Call EnableAero to display "Aero Glass" either on the whole dialog, or on some edges. 
+To enable glass for the whole dialog, just set _BCGPMARGINS::cyTopHeight to the height of the client area.See the SkinnedDialog sample for more info.</summary>
+            <param name="margins">Specifies the margins for the "glass" areas.</param>
+        </member>
+        <member name="M:CBCGPDialog.EnableVisualManagerStyle(System.Int32,System.Int32,CList&lt;System.UInt32,System.UInt32&gt;!System.Runtime.CompilerServices.IsConst*)">
+            <summary>
+Automatically subclasses all hosted controls in order to take advantage of Visual Manager themes and the "Aero Glass" technology.</summary>
+            <param name="bEnable">TRUE - enables Visual Manager theme support for hosted controls. FALSE - disables Visual Manager theme support for hosted controls.</param>
+            <param name="bNCArea">If TRUE, the non-client area of dialog will be displayed using the current Visual Style</param>
+            <param name="plstNonSubclassedItems">List of controls that shouldn't be subclassed.</param>
+            <remarks>
+Call this function with bEnable TRUE to automatically subclass all hosted controls in order to take advantage of Visual Manager themes and the "Aero Glass" technology.</remarks>
+        </member>
+        <member name="M:CBCGPDialog.#ctor(System.Char!System.Runtime.CompilerServices.IsConst*,CWnd*)">
+            <summary>
+Constructs the object</summary>
+            <param name="lpszTemplateName">Specifies a dialog template resource name .</param>
+            <param name="pParentWnd">A pointer to the parent window</param>
+        </member>
+        <member name="M:CBCGPDialog.#ctor(System.UInt32,CWnd*)">
+            <summary>
+Constructs the object</summary>
+            <param name="nIDTemplate">Specifies the dialog template resource ID.</param>
+            <param name="pParentWnd">A pointer to the parent window</param>
+        </member>
+        <member name="M:CBCGPDialog.#ctor">
+            <summary>
+Constructs the object</summary>
+        </member>
+        <member name="T:CBCGPDialog">
+            <summary>
+The CBCGPDialog class extends the functionality of the CDialog class. It allows to define a background image or color for the dialog box window and handles all the palette an transparency issues.
+To take advantage of CBCGPDialog features you just need to derive your dialog class from the CBCGPDialog class instead of CDialog class.
+When you call SetBackgroundImage method and pass HBITMAP as the image handle, the CBCGPDialog object will take ownership over the image and delete it only if the m_bAutoDestroyBmp flag is TRUE. The current background image will be deleted if you call the SetBackgroundImage again or by OnDestroy message handler. Images loaded from the resource file  are always destroyed automatically.</summary>
+            <remarks />
+        </member>
+        <member name="M:CBCGPRibbonBar.EnablePrintPreview(System.Int32)">
+            <summary>
+Use this function to enable the "Print Preview" tab. If print preview is enabled, the library automatically displays the "Print Preview" tab for print preview view.
+By the default "Print Preview" tab is enabled.</summary>
+            <param name="bEnable">If TRUE, "Print Preview" tab will be displayed; if FALSE, "Print Preview" tab won't be displayed automatically.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.AddContextCategory(System.Char!System.Runtime.CompilerServices.IsConst*,System.Char!System.Runtime.CompilerServices.IsConst*,System.UInt32,BCGPRibbonCategoryColor,System.UInt32,System.UInt32,CSize,CSize,CRuntimeClass*)">
+            <summary>
+Use this function to add a context category. Context categories are a special type of categories, which can be shown or hidden at runtime depending on the current application context. For example, when the user selects an object, you can display special tabs with context categories intended to manipulate the specific selected object.
+ The context category color should be one of the following values:
+BCGPCategoryColor_None
+BCGPCategoryColor_Red
+BCGPCategoryColor_Orange
+BCGPCategoryColor_Yellow
+BCGPCategoryColor_Green
+BCGPCategoryColor_Blue
+BCGPCategoryColor_Indigo
+BCGPCategoryColor_Violet</summary>
             <returns> 
-Pitch and the family (see LOGFONT in the Windows SDK documentation).</returns>
+A pointer to the newly created category.</returns>
+            <param name="lpszName">Specifies the category name.</param>
+            <param name="lpszContextName">Specifies the category context name.</param>
+            <param name="uiContextID">Context ID.</param>
+            <param name="clrContext">Context category color.</param>
+            <param name="uiSmallImagesResID">Resource ID of category small image.</param>
+            <param name="uiLargeImagesResID">Resource ID of category large image.</param>
+            <param name="sizeSmallImage">Size of small image.</param>
+            <param name="sizeLargeImage">Size of large image.</param>
+            <param name="pRTI" />
         </member>
-        <member name="M:CMFCRibbonFontComboBox.GetCharSet">
+        <member name="M:CBCGPRibbonBar.AddCategory(System.Char!System.Runtime.CompilerServices.IsConst*,System.UInt32,System.UInt32,CSize,CSize,System.Int32,CRuntimeClass*)">
             <summary>
-Returns the specified character set.</summary>
+Use this function to add a new ribbon category.  The category can be set up using the returned pointer.</summary>
             <returns> 
-Characters set (see LOGFONT in the Windows SDK documentation).</returns>
+A pointer to newly created category. This pointer can be used to setup the category.</returns>
+            <param name="lpszName">Category name.</param>
+            <param name="uiSmallImagesResID" />
+            <param name="uiLargeImagesResID">Resource ID of large images.</param>
+            <param name="sizeSmallImage">Specifies size of small images.</param>
+            <param name="sizeLargeImage">Specifies size of large images.</param>
+            <param name="nInsertAt">Zero based index to insert the category at.</param>
+            <param name="pRTI">A pointer to runtime class information of a CBCGPRibbonCategory-derived class</param>
         </member>
-        <member name="M:CMFCRibbonFontComboBox.GetFontType">
+        <member name="M:CBCGPRibbonBar.AddBackstageCategory(System.Char!System.Runtime.CompilerServices.IsConst*,System.UInt32,CSize,CRuntimeClass*)">
             <summary>
-Returns which font types to display in the combo box. Valid options are DEVICE_FONTTYPE, RASTER_FONTTYPE, and TRUETYPE_FONTTYPE, or any bitwise combination thereof.</summary>
+Use this method to add a backstage category to Ribbon Control. It can be only one backstage category in a Ribbon Control, therefore you should call this method only once at the initialization stage. 
+Use the returned pointer to backstage panel to initialize the backstage view.</summary>
             <returns> 
-Font types ( see EnumFontFamProc in the Windows SDK documentation).</returns>
+A valid pointer to CBCGPRibbonBackstageViewPanel object.</returns>
+            <param name="lpszName">Specifies category name.</param>
+            <param name="uiSmallImagesResID">Resource ID of category's small image.</param>
+            <param name="sizeSmallImage">Specifies the size of small image.</param>
+            <param name="pRTI">A pointer to runtime class information of a CBCGPRibbonCategory-derived class.</param>
         </member>
-        <member name="M:CMFCRibbonCategory.OnKey(System.UInt32)">
+        <member name="M:CBCGPRibbonBar.AddMainCategory(System.Char!System.Runtime.CompilerServices.IsConst*,System.UInt32,System.UInt32,CSize,CSize,CRuntimeClass*)">
             <summary>
-Called by the framework when a user presses a keyboard button.</summary>
-            <param name="nChar">The virtual-key code for the key that a user pressed.</param>
-        </member>
-        <member name="M:CMFCRibbonCategory.GetVisibleElements(CArray&lt;CMFCRibbonBaseElement**,CMFCRibbonBaseElement**&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
-            <summary>
-Obtain all visible elements that belong to the ribbon category</summary>
-            <param name="arElements">Array of all visible elements</param>
-        </member>
-        <member name="M:CMFCRibbonCategory.IsWindows7Look">
-            <summary>
-Indicates whether the parent ribbon has Windows 7-style look (small rectangular application button)</summary>
+Use this function to add main ribbon panel. Main ribbon panel is a special panel which appears when user clicks main ribbon button.</summary>
             <returns> 
-TRUE if the parent ribbon has Windows 7-style look; otherwise FALSE.</returns>
+A pointer to the newly created main ribbon panel.</returns>
+            <param name="lpszName">Category (panel) name.</param>
+            <param name="uiSmallImagesResID">Resource ID of small images.</param>
+            <param name="uiLargeImagesResID">Resource ID of large images.</param>
+            <param name="sizeSmallImage">Specifies size of small images.</param>
+            <param name="sizeLargeImage">Specifies size of large images.</param>
+            <param name="pRTI">Ribbon main category runtime class. Should be either NULL or CBCGPRibbonMainPanel-derived</param>
         </member>
-        <member name="M:CMFCRibbonCategory.GetHighlighted">
+        <member name="M:CBCGPRibbonBar.EnableStartPage(System.UInt32,CRuntimeClass*,System.Int32,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
             <summary>
-Returns a highlighted element. </summary>
-            <returns> A pointer to a highlighted element or NULL if no elements are highlighted.</returns>
+Use this function to specify the application start page.</summary>
+            <param name="nDlgTemplateID">Start page dialog resource ID.</param>
+            <param name="pDlgClass">Start page dialog class (should be derived from CBCGPDialog).</param>
+            <param name="bShowOnStartup">TRUE: automatically show start page on application startup; FALSE - otherewise.</param>
         </member>
-        <member name="M:CMFCRibbonCategory.GetFocused">
+        <member name="M:CBCGPRibbonBar.SetMainButton(CBCGPRibbonMainButton*,CSize)">
             <summary>
-Returns a focused element. </summary>
-            <returns> A pointer to a focused element or NULL if no elements are focused.</returns>
+Use this function to assign main ribbon button to Ribbon control. Main ribbon button is a button located at the top left corner of Ribbon control.</summary>
+            <param name="pButton">A pointer to main ribbon button.</param>
+            <param name="sizeButton">Specifies the size of main ribbon button.</param>
         </member>
-        <member name="M:CMFCRibbonCategory.GetLastVisibleElement">
-            <summary>
-Obtain a last visible element that belong to the ribbon category</summary>
+        <member name="M:CBCGPRibbonBar.RecalcLayout">
+            <summary />
+        </member>
+        <member name="M:CBCGPRibbonBar.GetCustomizationOptions">
+            <summary />
             <returns> 
-Pointer to the last visible element; may be NULL if category doesn't have any visible elements</returns>
+Ribbon customization options.</returns>
         </member>
-        <member name="M:CMFCRibbonCategory.GetFirstVisibleElement">
-            <summary>
-Obtain a first visible element that belong to the ribbon category</summary>
+        <member name="M:CBCGPRibbonBar.IsCustomizationEnabled">
+            <summary />
             <returns> 
-Pointer to the first visible element; may be NULL if category doesn't have any visible elements</returns>
+TRUE if Ribbon customization is enabled; otherwise FALSE.</returns>
         </member>
-        <member name="M:CMFCRibbonPanelMenuBar.GetFocused">
+        <member name="M:CBCGPRibbonBar.EnableCustomization(System.Int32,CBCGPRibbonCustomizationOptions*)">
+            <summary>Enable/disable the Ribbon customization</summary>
+            <param name="bEnable">TRUE - enable customization; FALSE - otherwise</param>
+            <param name="pOptions">The Ribbon customization options</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.SetBackstagePageTransitionEffect(CBCGPPageTransitionManager.BCGPPageTransitionEffect,System.Int32)">
             <summary>
-Returns a focused element. </summary>
-            <returns> A pointer to a focused element or NULL.</returns>
+Call this method to specify backstage view pages transition effect.</summary>
         </member>
-        <member name="M:CMFCRibbonPanel.GetGalleryRect">
-            <summary> 
-Returns a bounding rectangle of Gallery element.</summary>
-            <returns> Size and position of Gallery element within this panel.</returns>
-        </member>
-        <member name="M:CMFCRibbonPanel.MakeGalleryItemVisible(CMFCRibbonBaseElement*)">
-            <summary> 
-Scrolls the gallery to make the specified Ribbon element visible.</summary>
-            <param name="pItem"> A pointer to a Ribbon element to show.</param>
-        </member>
-        <member name="M:CMFCRibbonPanel.SetFocused(CMFCRibbonBaseElement*)">
+        <member name="M:CBCGPRibbonBar.ShowStartPage">
             <summary>
-Sets focus to the specified Ribbon element.</summary>
-            <param name="pNewFocus"> A pointer to a Ribbon element that receives focus.</param>
+Call this method to activate a start page page.</summary>
         </member>
-        <member name="M:CMFCRibbonPanel.GetFocused">
+        <member name="M:CBCGPRibbonBar.ShowBackstageRecentView">
             <summary>
-Returns a focused element. </summary>
-            <returns> A pointer to a focused element or NULL.</returns>
+Call this method to activate a backstage "Recent Files/Folders" page.</summary>
         </member>
-        <member name="M:CMFCRibbonPanel.GetVisibleElements(CArray&lt;CMFCRibbonBaseElement**,CMFCRibbonBaseElement**&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+        <member name="M:CBCGPRibbonBar.ShowBackstagePrintView">
             <summary>
-Obtains an array of visible elements.</summary>
-            <param name="arElements"> When the function returns this parameter contains an array of visible elements.</param>
+Call this method to activate a backstage "Print" page.</summary>
         </member>
-        <member name="M:CMFCRibbonPanel.IsWindows7Look">
+        <member name="M:CBCGPRibbonBar.ShowBackstageView(CRuntimeClass*)">
             <summary>
-Indicates whether the parent ribbon has Windows 7-style look (small rectangular application button)</summary>
+Call this method to activate a backstage page with a specified runtime class.</summary>
+            <param name="pViewClass">Specifies a page to activate.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.ShowBackstageView(System.Int32)">
+            <summary>
+Call this method to activate a backstage page. If nPage is -1, the first page is activated.</summary>
+            <param name="nPage">Specifies a page to activate.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.IsDisplayBackstageCommandIcons">
+            <summary>
+Backstage view command icons.</summary>
             <returns> 
-TRUE if the parent ribbon has Windows 7-style look; otherwise FALSE.</returns>
+TRUE - display icons near command entries; otherwise FALSE.</returns>
         </member>
-        <member name="M:CMFCRibbonBar.GetFocused">
+        <member name="M:CBCGPRibbonBar.IsBackstageMode">
             <summary>
-Returns a focused element. </summary>
-            <returns> A pointer to a focused element or NULL.</returns>
-        </member>
-        <member name="M:CMFCRibbonBar.SaveToXMLBuffer(System.Byte**)">
-            <summary> Saves the Ribbon Bar to a buffer.
-</summary>
-            <param name="ppBuffer">When this function returns, ppBuffer points to a buffer allocated by this method and 
-containing Ribbon Bar information in XML format.</param>
-            <returns>TRUE if succeeds; othewise FALSE.</returns>
-        </member>
-        <member name="M:CMFCRibbonBar.SaveToXMLFile(System.Char!System.Runtime.CompilerServices.IsConst*)">
-            <summary> Saves the Ribbon Bar to XML file.
-</summary>
-            <param name="lpszFilePath">Specifies the output file.</param>
-            <returns>TRUE if succeeds; othewise FALSE.</returns>
-        </member>
-        <member name="M:CMFCRibbonBar.IsWindows7Look">
-            <summary>
-Indicates whether the ribbon has Windows 7-style look (small rectangular application button)</summary>
+Backstage mode checking.</summary>
             <returns> 
-TRUE if the ribbon has Windows 7-style look; otherwise FALSE.</returns>
+TRUE if backstage mode is on; otherwise FALSE.</returns>
         </member>
-        <member name="M:CMFCRibbonBar.SetWindows7Look(System.Int32,System.Int32)">
+        <member name="M:CBCGPRibbonBar.SetBackstageMode(System.Int32,System.Int32)">
             <summary>
-Enable/disable ribbon Windows 7-style look (small rectangular application button)</summary>
-            <param name="bWindows7Look">TRUE - set Windows 7-style look; FALSE - otherwise.</param>
-            <param name="bRecalc">TRUE - recalculate the ribbon layout; FALSE - otherwise.</param>
+This function is called to turn backstage mode on or off./// </summary>
+            <param name="bSet">TRUE - turn backstage mode on; FALSE - turn backstage mode off.</param>
+            <param name="bDisplayCommandIcons">TRUE - display icons near command entries; FALSE - otherwise.</param>
         </member>
-        <member name="M:CMFCRibbonBar.LoadFromBuffer(System.Char!System.Runtime.CompilerServices.IsConst*)">
+        <member name="M:CBCGPRibbonBar.IsScenicLook">
             <summary>
-Loads a Ribbon Bar from application resources.</summary>
-            <returns> TRUE if load succeeds; otherwise FALSE. </returns>
-            <param name="lpszXMLBuffer">A buffer with XML string to load the Ribbon Bar from.</param>
-        </member>
-        <member name="M:CMFCRibbonBar.LoadFromResource(System.Char!System.Runtime.CompilerServices.IsConst*,System.Char!System.Runtime.CompilerServices.IsConst*,HINSTANCE__*)">
-            <summary>
-Loads a Ribbon Bar from application resources.</summary>
-            <returns> TRUE if load succeeds; otherwise FALSE. </returns>
-            <param name="lpszXMLResID">Specifies resource ID (in string form) with Ribbon Bar information.</param>
-            <param name="lpszResType">Specifies type of the resource located at uiXMLResID.</param>
-            <param name="hInstance">Handle to the module whose executable file contains the resource. If hModule is NULL, the system loads the resource from the module that was used to create the current process.</param>
-        </member>
-        <member name="M:CMFCRibbonBar.LoadFromResource(System.UInt32,System.Char!System.Runtime.CompilerServices.IsConst*,HINSTANCE__*)">
-            <summary>
-Loads a Ribbon Bar from application resources.</summary>
-            <returns> TRUE if load succeeds; otherwise FALSE. </returns>
-            <param name="uiXMLResID">Specifies resource ID of XML string with Ribbon Bar information.</param>
-            <param name="lpszResType">Specifies type of the resource located at uiXMLResID.</param>
-            <param name="hInstance">Handle to the module whose executable file contains the resource. If hModule is NULL, the system loads the resource from the module that was used to create the current process.</param>
-        </member>
-        <member name="M:CMFCRibbonButtonsGroup.GetFocused">
-            <summary>
-Returns a focused element. </summary>
-            <returns> A pointer to a focused element or NULL.</returns>
-        </member>
-        <member name="M:CMFCRibbonBaseElement.HasFocus">
-            <summary>
-Indicates whether the parent element has keyboard focus</summary>
+Check for the scenic (Windows 7/8-like) look.</summary>
             <returns> 
-TRUE if the ribbon element is focused; otherwise FALSE.</returns>
+TRUE if the current look of Ribbon is scenic; otherwise FALSE.</returns>
         </member>
-        <member name="F:CMFCBaseTabCtrl.m_bReadyToDetach">
+        <member name="M:CBCGPRibbonBar.SetScenicLook(System.Int32,System.Int32)">
+            <summary>
+Call this function with bScenicLook set to TRUE to display the Ribbon Bar in scenic look.</summary>
+            <param name="bScenicLook">Specifies the look to be set.</param>
+            <param name="bRecalc">Specifies whether the Ribbon Bar should recalculate layout.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.LoadFromBuffer(System.Char!System.Runtime.CompilerServices.IsConst*)">
+            <summary>
+Use this method to load a Ribbon Bar from a memory buffer containing XML definition of the Ribbon Bar schema. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the XML.</summary>
+            <param name="lpszXMLBuffer">A pointer to a memory buffer with XML.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.LoadFromVSRibbon(System.Char!System.Runtime.CompilerServices.IsConst*)">
+            <summary>
+Use this method to import a Ribbon Bar schema from VS 2010/2012 resource file. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the VS resources.</summary>
+            <param name="lpszXMLResID">Specifies resource ID for the XML.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.LoadFromVSRibbon(System.UInt32)">
+            <summary>
+Use this method to import a Ribbon Bar schema from VS 2010/2012 resource file. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the VS resources.</summary>
+            <param name="uiXMLResID">Specifies Resource ID for the XML.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.LoadFromXML(System.Char!System.Runtime.CompilerServices.IsConst*)">
+            <summary>
+Use this method to load a Ribbon Bar schema from XML. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the XML.</summary>
+            <param name="lpszXMLResID">Specifies resource ID for the XML.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.LoadFromXML(System.UInt32)">
+            <summary>
+Use this method to load a Ribbon Bar schema from XML. All ribbon elements (categories, panels, buttons etc) will be recreated according definitions written in the XML.</summary>
+            <param name="uiXMLResID">Specifies Resource ID for the XML.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.CreateEx(CWnd*,System.UInt32!System.Runtime.CompilerServices.IsLong,System.UInt32!System.Runtime.CompilerServices.IsLong,System.UInt32)">
+            <summary>
+Creates the Windows control and attaches it to CBCGPRibbonBar.</summary>
+            <returns> 
+TRUE if the function succeeds; otherwise FALSE.</returns>
+            <param name="pParentWnd">Pointer to parent window (usually main frame).</param>
+            <param name="dwCtrlStyle">Control extended style</param>
+            <param name="dwStyle">A combination of window styles to be applied to the control.</param>
+            <param name="nID">Specifies control ID.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.Create(CWnd*,System.UInt32!System.Runtime.CompilerServices.IsLong,System.UInt32)">
+            <summary>
+Creates the Windows control and attaches it to CBCGPRibbonBar.</summary>
+            <returns> 
+TRUE if the function succeeds; otherwise FALSE.</returns>
+            <param name="pParentWnd">Pointer to parent window (usually main frame).</param>
+            <param name="dwStyle">A combination of window styles to be applied to the control.</param>
+            <param name="nID">Specifies control ID.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.#ctor(System.Int32)">
+            <summary>CBCGPRibbonBar default cosntructor</summary>
+            <param name="bReplaceFrameCaption">TRUE if the ribbon bar replaces the application frame caption.</param>
+        </member>
+        <member name="M:CBCGPRibbonBar.SaveRibbon(CBCGPRibbonBar!System.Runtime.CompilerServices.IsConst*,CBCGPRibbonStatusBar!System.Runtime.CompilerServices.IsConst*,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.UInt32!System.Runtime.CompilerServices.IsLong,ATL.CStringT&lt;System.Char,StrTraitMFC_DLL&lt;System.Char,ATL.ChTraitsCRT{System.Char}&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,ATL.CStringT&lt;System.Char,StrTrai">
+            <summary />
+            <param name="rb" />
+            <param name="sb" />
+            <param name="strFolder" />
+            <param name="strResourceName" />
+            <param name="dwFlags" />
+            <param name="strResourceFolder" />
+            <param name="strResourcePrefix" />
+        </member>
+        <member name="M:CBCGPRibbonContextCaption.GetContextCaptionIndex(CBCGPRibbonContextCaption*)">
+            <summary />
+            <param name="pContextCaption" />
+        </member>
+        <member name="M:CBCGPRibbonContextCaption.GetContextCategories(CArray&lt;CBCGPRibbonCategory**,CBCGPRibbonCategory**&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary />
+            <param name="arCategories" />
+        </member>
+        <member name="M:CBCGPRibbonContextCaption.GetColor">
+            <summary>
+The returned value can be one of the following enumerated values:
+BCGPCategoryColor_None
+BCGPCategoryColor_Red
+BCGPCategoryColor_Orange
+BCGPCategoryColor_Yellow
+BCGPCategoryColor_Green
+BCGPCategoryColor_Blue
+BCGPCategoryColor_Indigo
+BCGPCategoryColor_Violet
+The color can be set using CBCGPRibbonCategory::SetTabColor or CBCGPRibbonBar::AddContextCategory.</summary>
+        </member>
+        <member name="T:CBCGPRibbonContextCaption">
+            <summary>
+The CBCGPRibbonContextCaption class implements the functionality of colored caption that appears on the top of ribbon context tabs.</summary>
+        </member>
+        <member name="F:CBCGPBaseTabWnd.m_bReadyToDetach">
 detachable bars support
 </member>
-        <member name="F:CDockablePane.m_sizeDragSensitivity">
+        <member name="F:CBCGPDockingControlBar.m_sizeDragSencitivity">
 how far the mouse is moved after NcLBtnDown before the bar becomes floating
 </member>
-        <member name="F:CMFCToolBar.m_bDontScaleImages">
-            <summary> Specifies whether to scale or not toolbar images in high DPI mode.</summary>
-        </member>
-        <member name="M:CMFCToolBar.SetLockedSizes(tagSIZE,tagSIZE,System.Int32)">
-            <summary>
-Sets the sizes of locked buttons and locked images on the toolbar. </summary>
-            <param name="sizeButton">Specifies the size of locked toolbar buttons. </param>
-            <param name="sizeImage">Specifies the size of locked toolbar images. </param>
-            <param name="bDontScale">Specifies whether to scale or not locked toolbar images in high DPI mode.</param>
-        </member>
-        <member name="M:AFX_GLOBAL_DATA.GetITaskbarList3">
-            <summary>
-Creates and stores in the global data a pointer to ITaskBarList3 interface.</summary>
-            <returns>A pointer to ITaskbarList3 interface if creation creation of a task bar list object succeeds, or NULL if creation fails or current
-Operation System is less than Windows 7.</returns>
-        </member>
-        <member name="M:AFX_GLOBAL_DATA.GetITaskbarList">
-            <summary>
-Creates and stores in the global data a pointer to ITaskBarList interface.</summary>
-            <returns>A pointer to ITaskbarList interface if creation of a task bar list object succeeds, or NULL if creation fails or current
-Operation System is less than Windows 7.</returns>
-        </member>
-        <member name="M:AFX_GLOBAL_DATA.ShellCreateItemFromParsingName(System.Char!System.Runtime.CompilerServices.IsConst*,IBindCtx*,_GUID!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Void**)">
-            <summary>
-Creates and initializes a Shell item object from a parsing name.</summary>
-            <param name="pszPath">[in] A pointer to a display name.</param>
-            <param name="pbc">A pointer to a bind context that controls the parsing operation.</param>
-            <param name="riid">A reference to an interface ID.</param>
-            <param name="ppv">[out] When this function returns, contains the interface pointer requested in riid. This will typically be IShellItem or IShellItem2.</param>
-            <returns>Returns S_OK if successful, or an error value otherwise. </returns>
-        </member>
-        <member name="M:AFX_GLOBAL_DATA.GetShellAutohideBars">
-            <summary>
-Determines positions of Shell auto hide bars.</summary>
-            <returns> An integer value with encoded flags that specify positions of auto hide bars.
-It may combine the following values: AFX_AUTOHIDE_BOTTOM, AFX_AUTOHIDE_TOP, AFX_AUTOHIDE_LEFT, 
-AFX_AUTOHIDE_RIGHT.</returns>
-        </member>
-        <member name="F:AFX_GLOBAL_DATA.bIsWindows7">
-            <summary>
-Indicates whether the application is being executed under Windows 7 OS or higher</summary>
-        </member>
-        <member name="F:AFX_GLOBAL_DATA.clrInactiveCaptionGradient">
-            <summary>
-Specifies gradient color of inactive active caption. Generally used for docking panes. </summary>
-        </member>
-        <member name="F:AFX_GLOBAL_DATA.clrActiveCaptionGradient">
-            <summary>
-Specifies gradient color of active caption. Generally used for docking panes. </summary>
-        </member>
-        <member name="M:CMFCToolBarImages.ConvertTo32Bits(System.UInt32!System.Runtime.CompilerServices.IsLong)">
-            <summary>
-Converts underlined bitmaps to 32 bpp images.</summary>
-            <returns> TRUE if succeeds; otherwise FALSE.</returns>
-            <param name="clrTransparent">Specifies transparent color of underlined bitmaps.</param>
-        </member>
-        <member name="M:CMFCToolBarImages.IsScaled">
-            <summary>
-Tells whether the underlined images are scaled or not.</summary>
-            <returns> TRUE if underlined images are scaled; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMFCToolBarImages.GetScale">
-            <summary>
-Returns current scale ratio of underlined images.</summary>
-            <returns> A value representing current scale ratio.</returns>
-        </member>
-        <member name="M:CMFCToolBarImages.SmoothResize(System.Double)">
-            <summary> 
-Smoothly resizes underlined images.</summary>
-            <param name="dblScale"> Scale ratio.</param>
-            <returns> TRUE if resize succeeds; otherwise FALSE.</returns>
-        </member>
-        <member name="M:CMFCToolBarImages.GetBitsPerPixel">
-            <summary> Returns current resolution of underlined images.</summary>
-            <returns> An integer value representing the current resolution of underlined images, in bits per pixel (bpp).</returns>
-        </member>
-        <member name="M:Gdiplus.Region.IsVisible(Gdiplus.PointF!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,Gdiplus.Graphics!System.Runtime.CompilerServices.IsConst*)">
-Hit testing operations
+        <member name="T:CBCGPCommandManager">
+This class is responsible for:
+- knowledge about all commands
+- images for all commands
+- command categories
+- default toolbars
 
 </member>
         <member name="F:CBitmapRenderTarget.m_pBitmapRenderTarget">
@@ -7441,5 +7302,6 @@ Represents a basic transition.
 This class encapsulates IUIAnimationTransition interface and serves as a base class for all transitions.
 </remarks>
         </member>
+        <!-- Discarding badly formed XML document comment for member 'T:CBCGPRibbonBar'. -->
     </members>
 </doc>

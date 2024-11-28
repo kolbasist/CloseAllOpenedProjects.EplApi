@@ -3,4 +3,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Project</StartAction>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartAction>Program</StartAction>
+    <StartProgram>D:\Program Files\EPLAN\Platform\2024.0.3\Bin\EPLAN.exe</StartProgram>
+    <StartArguments>/Variant:"Electric P8"</StartArguments>
+  </PropertyGroup>
 </Project>
