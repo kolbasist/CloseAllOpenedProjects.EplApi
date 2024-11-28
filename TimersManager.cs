@@ -1,9 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Windows.Forms; // Добавлено
-using CENTEC.EplAPI.Service;
+using System.Windows.Forms;
+using MyEplanAPI.Service;
 
-namespace CENTEC.EplAddin.TestEplanAPI
+namespace Warden
 {
     internal class TimersManager
     {
