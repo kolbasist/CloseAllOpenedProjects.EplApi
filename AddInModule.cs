@@ -1,9 +1,9 @@
 ﻿using System;
 using Eplan.EplApi.Base;
 using Eplan.EplApi.Gui;
-using CENTEC.EplAPI.Service;
+using MyEplanAPI.Service;
 
-namespace CENTEC.EplAddin.TestEplanAPI
+namespace Warden
 {
     public class AddInModule : Eplan.EplApi.ApplicationFramework.IEplAddIn
     {
