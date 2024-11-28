@@ -1,7 +1,7 @@
 ﻿using Eplan.EplApi.ApplicationFramework;
-using CENTEC.EplAPI.Service;
+using MyEplanAPI.Service;
 
-namespace CENTEC.EplAddin.TestEplanAPI
+namespace Warden
 {
     internal class GUICloser : IEplAction
     {
